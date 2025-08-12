@@ -122,5 +122,5 @@ plt.show()
 - $R_{\mathrm{main}}$: peak count rate of the main episode of emission  
 - $\tau_{\mathrm{prec}}$: duration of the precursor episode emission  
 - $\tau_{\mathrm{main}}$: duration of the main episode emission  
-- $\Delta_{\mathrm{pk}}$: the separation time between the $R_{\mathrm{prec}}$ and $R_{\mathrm{main}}$  
-- $\Delta_q$: the quiescent time  
+- $\Delta t_{\mathrm{pk}}$: the separation time between the $R_{\mathrm{prec}}$ and $R_{\mathrm{main}}$  
+- $\Delta t_q$: the quiescent time  
