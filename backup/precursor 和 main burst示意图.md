@@ -116,7 +116,7 @@ plt.savefig('lightcurve_prec_main_demo.pdf', dpi=400, bbox_inches="tight")
 plt.show()
 ```
 
-[lightcurve_prec_main_demo.pdf](https://github.com/user-attachments/files/21736410/lightcurve_prec_main_demo.pdf)
+![Image](https://github.com/user-attachments/assets/e1965b02-397c-420f-a695-6118a99b6a48)
 
 - $R_{\mathrm{prec}}$: peak count rate of the first episode of emission  
 - $R_{\mathrm{main}}$: peak count rate of the main episode of emission  
