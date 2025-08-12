@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Tue, 12 Aug 2025 13:06:46 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>precursor 和 main burst示意图</title><link>https://xiaosy-astro.github.io/post/precursor%20-he-%20main%20burst-shi-yi-tu.html</link><description>代码：
+代码：
 
 ```python
 import numpy as np
@@ -77,30 +76,30 @@ plt.ylim(ymin, ymax)
 y_tau = ymin + 0.25  # 放在下方（与图中弧形类似）
 # precursor duration arc
 plt.annotate(
-    '', xy=(vline_prec_start, y_tau), xytext=(vline_prec_end, y_tau),
-    arrowprops=dict(arrowstyle='&lt;-&gt;', lw=1.2, connectionstyle='arc3,rad=-0.3')
+    "", xy=(vline_prec_start, y_tau), xytext=(vline_prec_end, y_tau),
+    arrowprops=dict(arrowstyle='<->', lw=1.2, connectionstyle="arc3,rad=-0.3")
 )
 plt.text((vline_prec_start + vline_prec_end)/2, y_tau+0.1, r'$\tau_{\rm prec}$', ha='center', va='top')
 
 plt.annotate(
-    '', xy=(vline_main_start, y_tau), xytext=(vline_main_end, y_tau),
-    arrowprops=dict(arrowstyle='&lt;-&gt;', lw=1.2, connectionstyle='arc3,rad=-0.3')
+    "", xy=(vline_main_start, y_tau), xytext=(vline_main_end, y_tau),
+    arrowprops=dict(arrowstyle='<->', lw=1.2, connectionstyle="arc3,rad=-0.3")
 )
 plt.text((vline_main_start + vline_main_end)/2, y_tau+0.1, r'$\tau_{\rm main}$', ha='center', va='top')
 
 # --- Δt_pk 标注：峰与峰之间的双箭头（放在上方） ---
 y_pk = R_main + 0.35
 plt.annotate(
-    '', xy=(prec_peak_time, y_pk), xytext=(main_peak_time, y_pk),
-    arrowprops=dict(arrowstyle='&lt;-&gt;', lw=1.2,color='blue')
+    "", xy=(prec_peak_time, y_pk), xytext=(main_peak_time, y_pk),
+    arrowprops=dict(arrowstyle='<->', lw=1.2,color='blue')
 )
 plt.text((prec_peak_time + main_peak_time)/2, y_pk + 0.04, r'$\Delta t_{\rm pk}$', ha='center', va='bottom',color='blue')
 
 # --- Δt_det 标注：前驱结束与主峰开始之间的双箭头（放在 Δt_pk 之下） ---
 y_det = R_main + 0.15
 plt.annotate(
-    '', xy=(vline_prec_end, y_det), xytext=(vline_main_start, y_det),
-    arrowprops=dict(arrowstyle='&lt;-&gt;', lw=1.2)
+    "", xy=(vline_prec_end, y_det), xytext=(vline_main_start, y_det),
+    arrowprops=dict(arrowstyle='<->', lw=1.2)
 )
 plt.text((vline_prec_end + vline_main_start)/2, y_det - 0.3, r'$\Delta t_{\rm q}$', ha='center', va='bottom')
 # 标注 R_prec / R_main 的文字
@@ -108,12 +107,12 @@ plt.text(t.min() + 2, R_prec + 0.2, r'$R_{\rm prec}$', va='bottom', color='red')
 plt.text(t.max() + 1, R_main + 0.2, r'$R_{\rm main}$', va='bottom', ha='right', color='red')
 
 # 轴与外观
-plt.xlabel('Time (s)')
-plt.ylabel(r'Counts s$^{-1}$')
+plt.xlabel("Time (s)")
+plt.ylabel(r"Counts s$^{-1}$")
 plt.yticks([])
 plt.xticks([])
 plt.tight_layout()
-plt.savefig('lightcurve_prec_main_demo.pdf', dpi=400, bbox_inches='tight') 
+plt.savefig('lightcurve_prec_main_demo.pdf', dpi=400, bbox_inches="tight") 
 plt.show()
 ```
 
@@ -125,6 +124,3 @@ plt.show()
 - $\tau_{\mathrm{main}}$: duration of the main episode emission  
 - $\Delta_{\mathrm{pk}}$: the separation time between the $R_{\mathrm{prec}}$ and $R_{\mathrm{main}}$  
 - $\Delta_q$: the quiescent time  
-。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/precursor%20-he-%20main%20burst-shi-yi-tu.html</guid><pubDate>Tue, 12 Aug 2025 13:04:47 +0000</pubDate></item><item><title>如何在六个月内学会任何一门外语</title><link>https://xiaosy-astro.github.io/post/ru-he-zai-liu-ge-yue-nei-xue-hui-ren-he-yi-men-wai-yu.html</link><description>&gt; [!NOTE]
-&gt; 学会一门外语，对大多数人来说都需要花费好几年的时间。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/ru-he-zai-liu-ge-yue-nei-xue-hui-ren-he-yi-men-wai-yu.html</guid><pubDate>Fri, 08 Aug 2025 13:55:28 +0000</pubDate></item><item><title>EP/FXT 提取光变和能谱数据产品</title><link>https://xiaosy-astro.github.io/post/EP-FXT%20-ti-qu-guang-bian-he-neng-pu-shu-ju-chan-pin.html</link><description>&gt; [!IMPORTANT]
-&gt; 本教程是在给定坐标下， 从EP/FXT的用户数据中，提取其能谱和光变曲线产品，并自动生成两个能谱拟合xcm文件，一个是联合拟合，一个是单个拟合，只需要输入拟合的模型即可。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP-FXT%20-ti-qu-guang-bian-he-neng-pu-shu-ju-chan-pin.html</guid><pubDate>Fri, 08 Aug 2025 09:27:28 +0000</pubDate></item><item><title>EP_WXT_data_analysis</title><link>https://xiaosy-astro.github.io/post/EP_WXT_data_analysis.html</link><description>目标：流水线产品不可用，我需要重新提取数据，每一次观测数据含有event文件，需要通过xselect软件从event中提取数据产品，数据产品包括能谱（包括源和背景能谱）和光变曲线（源和背景的光变曲线）。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP_WXT_data_analysis.html</guid><pubDate>Fri, 08 Aug 2025 02:16:22 +0000</pubDate></item></channel></rss>
