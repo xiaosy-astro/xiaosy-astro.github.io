@@ -107,8 +107,8 @@ plt.text(t.min() + 2, R_prec + 0.2, r'$R_{\rm prec}$', va='bottom', color='red')
 plt.text(t.max() + 1, R_main + 0.2, r'$R_{\rm main}$', va='bottom', ha='right', color='red')
 
 # 轴与外观
-plt.xlabel("Time (s)")
-plt.ylabel(r"Counts s$^{-1}$")
+plt.xlabel(r"Time (s) $\rightarrow$")
+plt.ylabel(r"Counts s$^{-1}$ $\rightarrow$")
 plt.yticks([])
 plt.xticks([])
 plt.tight_layout()
@@ -116,7 +116,7 @@ plt.savefig('lightcurve_prec_main_demo.pdf', dpi=400, bbox_inches="tight")
 plt.show()
 ```
 
-![Image](https://github.com/user-attachments/assets/e1965b02-397c-420f-a695-6118a99b6a48)
+![Image](https://github.com/user-attachments/assets/9591562b-2537-4dfb-96bf-45a38dea2d55)
 
 - $R_{\mathrm{prec}}$: peak count rate of the first episode of emission  
 - $R_{\mathrm{main}}$: peak count rate of the main episode of emission  
