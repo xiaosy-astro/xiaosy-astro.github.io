@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 13 Aug 2025 08:18:23 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>precursor 和 main burst示意图</title><link>https://xiaosy-astro.github.io/post/precursor%20-he-%20main%20burst-shi-yi-tu.html</link><description>代码：
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 13 Aug 2025 08:21:26 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>precursor 和 main burst示意图</title><link>https://xiaosy-astro.github.io/post/precursor%20-he-%20main%20burst-shi-yi-tu.html</link><description>代码：
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-plt.style.use('https://raw.githubusercontent.com/wangboting/python-style/main/pythonstyle.style')
+plt.style.use('https://github.com/xiaosy-astro/python-style/blob/main/pythonstyle.style')
 plt.rcParams['font.sans-serif'] = ['SimSun']
 plt.rcParams['axes.unicode_minus'] = False
 plt.rcParams['font.size'] = 12

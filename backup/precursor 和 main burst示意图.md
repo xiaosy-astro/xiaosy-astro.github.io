@@ -3,7 +3,7 @@
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-plt.style.use('https://raw.githubusercontent.com/wangboting/python-style/main/pythonstyle.style')
+plt.style.use('https://github.com/xiaosy-astro/python-style/blob/main/pythonstyle.style')
 plt.rcParams['font.sans-serif'] = ['SimSun']
 plt.rcParams['axes.unicode_minus'] = False
 plt.rcParams['font.size'] = 12
