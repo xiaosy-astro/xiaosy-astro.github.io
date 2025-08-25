@@ -656,7 +656,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">fig_corner</span> <span class="pl-c1">=</span> <span class="pl-s1">posterior</span>.<span class="pl-c1">plot</span>.<span class="pl-c1">plot_corner</span>()
 <span class="pl-s1">corner_pdf</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>_<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">model_name</span><span class="pl-kos">}</span></span>_ELSISA_fit_spectrum_result.pdf'</span>)
 <span class="pl-s1">plt</span>.<span class="pl-c1">savefig</span>(<span class="pl-s1">corner_pdf</span>,<span class="pl-s1">dpi</span><span class="pl-c1">=</span><span class="pl-c1">400</span>,<span class="pl-s1">bbox_inches</span><span class="pl-c1">=</span><span class="pl-s">"tight"</span>)</pre></div>
-<h3>5.2 写一个xcm</h3>
+<h3>5.3 写一个xcm</h3>
 <p>先进入Xspec，@xspec_src.xcm，然后直接输入拟合的模型即可</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">###  xcm</span>
 <span class="pl-s1">xcm_src</span>  <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">"xspec_src.xcm"</span>)

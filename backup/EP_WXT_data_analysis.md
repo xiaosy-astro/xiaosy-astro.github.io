@@ -615,7 +615,7 @@ plt.savefig(corner_pdf,dpi=400,bbox_inches="tight")
 ```
 
 
-### 5.2 写一个xcm
+### 5.3 写一个xcm
 
 先进入Xspec，@xspec_src.xcm，然后直接输入拟合的模型即可
 
