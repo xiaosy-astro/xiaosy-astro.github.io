@@ -183,13 +183,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-s1">obsid</span>, <span class="pl-s1">cmos_num</span>, <span class="pl-s1">src_num</span> <span class="pl-c1">=</span> <span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>), <span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">2</span>), <span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">3</span>)
     <span class="pl-k">return</span> <span class="pl-s1">obsid</span>, <span class="pl-s1">cmos_num</span>, <span class="pl-s1">src_num</span></pre></div>
 <h2>2. 生成src.reg和bkg.reg</h2>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">os</span>
-<span class="pl-k">import</span> <span class="pl-s1">subprocess</span>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">extract_region</span> <span class="pl-k">import</span> <span class="pl-s1">write_ds9_annulus_region</span>, <span class="pl-s1">write_ds9_circle_region</span>, <span class="pl-s1">parse_filename</span>
+<span class="pl-k">import</span> <span class="pl-s1">os</span>
 <span class="pl-k">from</span> <span class="pl-s1">datetime</span> <span class="pl-k">import</span> <span class="pl-s1">datetime</span> <span class="pl-k">as</span> <span class="pl-s1">dt</span>
 <span class="pl-k">import</span> <span class="pl-s1">math</span>
 <span class="pl-k">from</span> <span class="pl-s1">astropy</span>.<span class="pl-s1">io</span> <span class="pl-k">import</span> <span class="pl-s1">fits</span>
 <span class="pl-k">import</span> <span class="pl-s1">numpy</span> <span class="pl-k">as</span> <span class="pl-s1">np</span>
+<span class="pl-k">from</span> <span class="pl-s1">astropy</span>.<span class="pl-s1">time</span> <span class="pl-k">import</span> <span class="pl-v">Time</span>
 <span class="pl-k">import</span> <span class="pl-s1">matplotlib</span>.<span class="pl-s1">pyplot</span> <span class="pl-k">as</span> <span class="pl-s1">plt</span>
+<span class="pl-k">import</span> <span class="pl-s1">subprocess</span>
 <span class="pl-s1">plt</span>.<span class="pl-c1">style</span>.<span class="pl-c1">use</span>(<span class="pl-s">'https://raw.githubusercontent.com/wangboting/python-style/main/pythonstyle.style'</span>)
 <span class="pl-s1">plt</span>.<span class="pl-c1">rcParams</span>[<span class="pl-s">'font.sans-serif'</span>] <span class="pl-c1">=</span> [<span class="pl-s">'SimSun'</span>]
 <span class="pl-s1">plt</span>.<span class="pl-c1">rcParams</span>[<span class="pl-s">'axes.unicode_minus'</span>] <span class="pl-c1">=</span> <span class="pl-c1">False</span>
@@ -197,52 +199,71 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s1">plt</span>.<span class="pl-c1">rcParams</span>[<span class="pl-s">'font.family'</span>] <span class="pl-c1">=</span> <span class="pl-s">'Times New Roman'</span>
 
 
-<span class="pl-s1">ep_wxt_filename</span> <span class="pl-c1">=</span> <span class="pl-s">'ep11900327297wxtCMOS11s1v1'</span>
+<span class="pl-s1">ep_wxt_filename</span> <span class="pl-c1">=</span> <span class="pl-s">'ep11916650903wxtCMOS25s1v1'</span>
 
-<span class="pl-s1">ra_src</span>,<span class="pl-s1">dec_src</span> <span class="pl-c1">=</span> <span class="pl-c1">313.264</span>, <span class="pl-c1">-</span><span class="pl-c1">4.648</span>
-<span class="pl-c"># ra_bkg,dec_bkg = 227.429, -39.591</span>
-<span class="pl-s1">date</span> <span class="pl-c1">=</span> <span class="pl-s">'20250730'</span>
-<span class="pl-s1">os</span>.<span class="pl-c1">chdir</span>(<span class="pl-s">f'/Users/btwang/workshop/EP/WXT_datasets/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">date</span><span class="pl-kos">}</span></span>/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">ep_wxt_filename</span><span class="pl-kos">}</span></span>'</span>)
-<span class="pl-en">print</span>(<span class="pl-s">"当前目录:"</span>, <span class="pl-s1">os</span>.<span class="pl-c1">getcwd</span>())
-<span class="pl-s1">output_dir</span> <span class="pl-c1">=</span> <span class="pl-s">"."</span>
-<span class="pl-en">print</span>(<span class="pl-s">"output_dir:"</span>,<span class="pl-s1">output_dir</span>)
+<span class="pl-s1">ra_src</span>, <span class="pl-s1">dec_src</span> <span class="pl-c1">=</span> <span class="pl-c1">0.803</span>, <span class="pl-c1">36.873</span>
+<span class="pl-s1">date</span> <span class="pl-c1">=</span> <span class="pl-s">'20250819'</span>
+
+<span class="pl-c"># 根目录</span>
+<span class="pl-s1">work_dir</span> <span class="pl-c1">=</span> <span class="pl-s">f'/Users/btwang/workshop/EP/WXT_datasets/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">date</span><span class="pl-kos">}</span></span>/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">ep_wxt_filename</span><span class="pl-kos">}</span></span>'</span>
+<span class="pl-en">print</span>(<span class="pl-s">"工作目录:"</span>, <span class="pl-s1">work_dir</span>)
+
+<span class="pl-c"># 产品目录</span>
+<span class="pl-s1">products_dir</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">work_dir</span>, <span class="pl-s">"products"</span>)
+<span class="pl-s1">os</span>.<span class="pl-c1">makedirs</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s1">exist_ok</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)   <span class="pl-c"># 如果没有就创建</span>
+<span class="pl-en">print</span>(<span class="pl-s">"产品目录:"</span>, <span class="pl-s1">products_dir</span>)
+
+<span class="pl-c"># 解析文件名</span>
 <span class="pl-s1">obsid</span>, <span class="pl-s1">cmos_num</span>, <span class="pl-s1">src_num</span> <span class="pl-c1">=</span> <span class="pl-en">parse_filename</span>(<span class="pl-s1">ep_wxt_filename</span>)
-<span class="pl-en">print</span>(<span class="pl-s">f"  解析结果 -&gt; obsid=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>, cmos_num=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">cmos_num</span><span class="pl-kos">}</span></span>, src_num=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>"</span>)
+<span class="pl-en">print</span>(<span class="pl-s">f"解析结果 -&gt; obsid=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>, cmos_num=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">cmos_num</span><span class="pl-kos">}</span></span>, src_num=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>"</span>)
 
-
-
-
-
-
-
+<span class="pl-c"># ---------------------------</span>
+<span class="pl-c"># 生成源区 region 文件</span>
 <span class="pl-s1">src_reg</span> <span class="pl-c1">=</span> <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>.reg'</span>
-<span class="pl-c">## 记得手动修改reg注释</span>
-<span class="pl-c">### WXT选源原则：67像素的圆，8.108 arcsec /pixel ,相当于 9 arcmin</span>
 <span class="pl-s1">comment_src</span> <span class="pl-c1">=</span> <span class="pl-s">f's<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>'</span>
-<span class="pl-s1">src_reg_path</span> <span class="pl-c1">=</span> <span class="pl-en">write_ds9_circle_region</span>(<span class="pl-s1">ra_src</span>, <span class="pl-s1">dec_src</span>, <span class="pl-s1">output_dir</span>, <span class="pl-s1">src_reg</span>,<span class="pl-s1">comment</span><span class="pl-c1">=</span><span class="pl-s1">comment_src</span>)
-<span class="pl-en">print</span>(<span class="pl-s">f'Region file saved to: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_reg_path</span><span class="pl-kos">}</span></span>'</span>)
+<span class="pl-s1">src_reg_path</span> <span class="pl-c1">=</span> <span class="pl-en">write_ds9_circle_region</span>(
+    <span class="pl-s1">ra_src</span>, <span class="pl-s1">dec_src</span>,
+    <span class="pl-s1">products_dir</span>,   <span class="pl-c"># 输出目录换成 products</span>
+    <span class="pl-s1">src_reg</span>,
+    <span class="pl-s1">comment</span><span class="pl-c1">=</span><span class="pl-s1">comment_src</span>
+)
+<span class="pl-en">print</span>(<span class="pl-s">f'Source region file saved to: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_reg_path</span><span class="pl-kos">}</span></span>'</span>)
 
+<span class="pl-c"># ---------------------------</span>
+<span class="pl-c"># 生成背景区 region 文件</span>
 <span class="pl-s1">bkg_reg</span> <span class="pl-c1">=</span> <span class="pl-s">f'bkg<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>.reg'</span>
-
-<span class="pl-c">#bkg_reg_path = write_ds9_annulus_region(ra_bkg, dec_bkg, output_dir, bkg)</span>
-<span class="pl-s1">bkg_reg_path</span> <span class="pl-c1">=</span> <span class="pl-en">write_ds9_annulus_region</span>(<span class="pl-s1">ra_src</span>, <span class="pl-s1">dec_src</span>, <span class="pl-s1">output_dir</span>, <span class="pl-s1">bkg_reg</span>)
-<span class="pl-en">print</span>(<span class="pl-s">f'Region file saved to: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bkg_reg_path</span><span class="pl-kos">}</span></span>'</span>)</pre></div>
+<span class="pl-s1">bkg_reg_path</span> <span class="pl-c1">=</span> <span class="pl-en">write_ds9_annulus_region</span>(
+    <span class="pl-s1">ra_src</span>, <span class="pl-s1">dec_src</span>,
+    <span class="pl-s1">products_dir</span>,   <span class="pl-c"># 输出目录换成 products</span>
+    <span class="pl-s1">bkg_reg</span>
+)
+<span class="pl-en">print</span>(<span class="pl-s">f'Background region file saved to: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bkg_reg_path</span><span class="pl-kos">}</span></span>'</span>)</pre></div>
 <h2>3. xselect提取能谱和光变曲线数据产品</h2>
 <p><code class="notranslate">heasoftpy</code> 不支持直接调用 <code class="notranslate">xselect</code>。不过我们可以通过写<code class="notranslate">.xco</code>实现自动提取数据产品。这里我通过<code class="notranslate">python</code>针对上一步得到的 <code class="notranslate">    src1.reg</code> 和<code class="notranslate">bkg1.reg</code>文件，写一个脚本。</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 写入 XSELECT 脚本</span>
-<span class="pl-en">print</span>(<span class="pl-s">"当前目录:"</span>, <span class="pl-s1">os</span>.<span class="pl-c1">getcwd</span>())
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">print</span>(<span class="pl-s">"工作目录:"</span>, <span class="pl-s1">work_dir</span>)
+<span class="pl-en">print</span>(<span class="pl-s">"产品目录:"</span>, <span class="pl-s1">products_dir</span>)
+
+<span class="pl-s1">src_reg</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>.reg'</span>)
+<span class="pl-s1">bkg_reg</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'bkg<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>.reg'</span>)
 <span class="pl-s1">evt_file</span> <span class="pl-c1">=</span> <span class="pl-s">f'ep<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>wxt<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">cmos_num</span><span class="pl-kos">}</span></span>po_cl.evt'</span>
-<span class="pl-s1">src_spec</span> <span class="pl-c1">=</span> <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_spec.pha'</span>
-<span class="pl-s1">bkg_spec</span> <span class="pl-c1">=</span> <span class="pl-s">f'bkg<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_spec.pha'</span>
-<span class="pl-s1">src_lc</span> <span class="pl-c1">=</span> <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_lc.lc'</span>
-<span class="pl-s1">bkg_lc</span> <span class="pl-c1">=</span> <span class="pl-s">f'bkg<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_lc.lc'</span>
-<span class="pl-s1">image_src</span> <span class="pl-c1">=</span> <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_img.img'</span>
-<span class="pl-c">###  源的能谱和光变曲线</span>
+
+<span class="pl-c"># 输出文件都放 products 目录</span>
+<span class="pl-s1">src_spec</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_spec.pha'</span>)
+<span class="pl-s1">bkg_spec</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'bkg<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_spec.pha'</span>)
+<span class="pl-s1">src_lc</span>   <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_lc.lc'</span>)
+<span class="pl-s1">bkg_lc</span>   <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'bkg<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_lc.lc'</span>)
+<span class="pl-s1">image_src</span><span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_img.img'</span>)
+
+<span class="pl-c"># xco 文件也放在 products</span>
+<span class="pl-s1">xco_src</span>  <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">"xselect_src.xco"</span>)
+<span class="pl-s1">xco_bkg</span>  <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">"xselect_bkg.xco"</span>)
+
+<span class="pl-c">### 源的脚本</span>
 <span class="pl-s1">xselect_src</span> <span class="pl-c1">=</span> <span class="pl-s">f"""src</span>
 <span class="pl-s">yes</span>
 <span class="pl-s">set mission ep</span>
+<span class="pl-s">set datadir <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">work_dir</span><span class="pl-kos">}</span></span></span>
 <span class="pl-s">read event <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">evt_file</span><span class="pl-kos">}</span></span></span>
-<span class="pl-s">.</span>
 <span class="pl-s">filter pha_cutoff 50 400</span>
 <span class="pl-s">extract image xybinsize=16</span>
 <span class="pl-s">save image <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">image_src</span><span class="pl-kos">}</span></span></span>
@@ -250,6 +271,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s">filter region <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_reg</span><span class="pl-kos">}</span></span>        </span>
 <span class="pl-s">extract spectrum</span>
 <span class="pl-s">save spectrum <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_spec</span><span class="pl-kos">}</span></span></span>
+<span class="pl-s">set binsize 1</span>
 <span class="pl-s">extract curve</span>
 <span class="pl-s">save curve <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_lc</span><span class="pl-kos">}</span></span></span>
 <span class="pl-s"></span>
@@ -257,65 +279,50 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s">no</span>
 <span class="pl-s">"""</span>
 
-<span class="pl-c">###  背景的能谱和光变曲线</span>
+<span class="pl-c">### 背景的脚本</span>
 <span class="pl-s1">xselect_bkg</span> <span class="pl-c1">=</span> <span class="pl-s">f"""bkg</span>
 <span class="pl-s">yes</span>
 <span class="pl-s">set mission ep</span>
+<span class="pl-s">set datadir <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">work_dir</span><span class="pl-kos">}</span></span></span>
 <span class="pl-s">read event <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">evt_file</span><span class="pl-kos">}</span></span></span>
-<span class="pl-s">.</span>
 <span class="pl-s">filter region <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bkg_reg</span><span class="pl-kos">}</span></span>          </span>
 <span class="pl-s">extract spectrum</span>
 <span class="pl-s">save spectrum <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bkg_spec</span><span class="pl-kos">}</span></span>    </span>
+<span class="pl-s">set binsize 1</span>
 <span class="pl-s">extract curve</span>
 <span class="pl-s">save curve <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bkg_lc</span><span class="pl-kos">}</span></span>          </span>
 <span class="pl-s">exit</span>
 <span class="pl-s">no</span>
 <span class="pl-s">"""</span>
 
-<span class="pl-c"># 保存为 .xco 文件</span>
-<span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s">"xselect_src.xco"</span>, <span class="pl-s">"w"</span>) <span class="pl-k">as</span> <span class="pl-s1">f</span>:
+<span class="pl-c"># 保存 .xco 文件</span>
+<span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s1">xco_src</span>, <span class="pl-s">"w"</span>) <span class="pl-k">as</span> <span class="pl-s1">f</span>:
     <span class="pl-s1">f</span>.<span class="pl-c1">write</span>(<span class="pl-s1">xselect_src</span>)
 
-<span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s">"xselect_bkg.xco"</span>, <span class="pl-s">"w"</span>) <span class="pl-k">as</span> <span class="pl-s1">f</span>:
+<span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s1">xco_bkg</span>, <span class="pl-s">"w"</span>) <span class="pl-k">as</span> <span class="pl-s1">f</span>:
     <span class="pl-s1">f</span>.<span class="pl-c1">write</span>(<span class="pl-s1">xselect_bkg</span>)
 
+<span class="pl-c"># 如果之前有旧输出，删除</span>
+<span class="pl-k">for</span> <span class="pl-s1">fpath</span> <span class="pl-c1">in</span> [<span class="pl-s1">src_spec</span>, <span class="pl-s1">bkg_spec</span>, <span class="pl-s1">src_lc</span>, <span class="pl-s1">bkg_lc</span>, <span class="pl-s1">image_src</span>]:
+    <span class="pl-k">if</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span>(<span class="pl-s1">fpath</span>):
+        <span class="pl-s1">os</span>.<span class="pl-c1">remove</span>(<span class="pl-s1">fpath</span>)
+        <span class="pl-en">print</span>(<span class="pl-s">f"Deleted old file: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">fpath</span><span class="pl-kos">}</span></span>"</span>)
 
-<span class="pl-c">#### 检查如果有输出同名文件，删除</span>
-
-<span class="pl-k">if</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span>(<span class="pl-s1">src_spec</span>):
-    <span class="pl-s1">os</span>.<span class="pl-c1">remove</span>(<span class="pl-s1">src_spec</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">f"Deleted source pha file: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_spec</span><span class="pl-kos">}</span></span>"</span>)
-
-<span class="pl-k">if</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span>(<span class="pl-s1">bkg_spec</span>):
-    <span class="pl-s1">os</span>.<span class="pl-c1">remove</span>(<span class="pl-s1">bkg_spec</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">f"Deleted background pha file: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bkg_spec</span><span class="pl-kos">}</span></span>"</span>)
-
-<span class="pl-k">if</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span>(<span class="pl-s1">src_lc</span>):
-    <span class="pl-s1">os</span>.<span class="pl-c1">remove</span>(<span class="pl-s1">src_lc</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">f"Deleted source lc file: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_lc</span><span class="pl-kos">}</span></span>"</span>)
-
-<span class="pl-k">if</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span>(<span class="pl-s1">bkg_lc</span>):
-    <span class="pl-s1">os</span>.<span class="pl-c1">remove</span>(<span class="pl-s1">bkg_lc</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">f"Deleted background lc file: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bkg_lc</span><span class="pl-kos">}</span></span>"</span>)
-
-<span class="pl-k">if</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span>(<span class="pl-s1">image_src</span>):
-    <span class="pl-s1">os</span>.<span class="pl-c1">remove</span>(<span class="pl-s1">image_src</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">f"Deleted background lc file: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">image_src</span><span class="pl-kos">}</span></span>"</span>)
-
-<span class="pl-c">### 源的能谱和光变曲线</span>
-<span class="pl-c"># 调用 XSELECT（需要 HEASoft 环境已激活）</span>
-<span class="pl-s1">subprocess</span>.<span class="pl-c1">run</span>(<span class="pl-s">"xselect  @xselect_src.xco"</span>, <span class="pl-s1">shell</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">check</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
-
-
-<span class="pl-c">###  背景的能谱和光变曲线</span>
-<span class="pl-s1">subprocess</span>.<span class="pl-c1">run</span>(<span class="pl-s">"xselect  @xselect_bkg.xco"</span>, <span class="pl-s1">shell</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">check</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</pre></div>
+<span class="pl-c"># 运行 xselect 脚本</span>
+<span class="pl-s1">subprocess</span>.<span class="pl-c1">run</span>(<span class="pl-s">f"xselect @<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">xco_src</span><span class="pl-kos">}</span></span>"</span>, <span class="pl-s1">shell</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">check</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+<span class="pl-s1">subprocess</span>.<span class="pl-c1">run</span>(<span class="pl-s">f"xselect @<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">xco_bkg</span><span class="pl-kos">}</span></span>"</span>, <span class="pl-s1">shell</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">check</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</pre></div>
 <h2>4. 画光变曲线</h2>
 <h3><span>4.1 使用 <code class="notranslate">lcmath</code> 提取净光变曲线</span></h3>
 <h4>4.1.1 提取backscal参数</h4>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">with</span> <span class="pl-s1">fits</span>.<span class="pl-c1">open</span>(<span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_spec</span><span class="pl-kos">}</span></span>"</span>) <span class="pl-k">as</span> <span class="pl-s1">hdul</span>:
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">with</span> <span class="pl-s1">fits</span>.<span class="pl-c1">open</span>(<span class="pl-s1">src_spec</span>) <span class="pl-k">as</span> <span class="pl-s1">hdul</span>:
     <span class="pl-c"># 打印包含的 HDU 列表</span>
     <span class="pl-s1">scal_src</span> <span class="pl-c1">=</span> <span class="pl-s1">hdul</span>[<span class="pl-c1">1</span>].<span class="pl-c1">header</span>.<span class="pl-c1">get</span>(<span class="pl-s">"BACKSCAL"</span>)
+    <span class="pl-s1">obs_id</span> <span class="pl-c1">=</span> <span class="pl-s1">hdul</span>[<span class="pl-c1">1</span>].<span class="pl-c1">header</span>.<span class="pl-c1">get</span>(<span class="pl-s">"OBS_ID"</span>)
+    <span class="pl-c1">MJD</span> <span class="pl-c1">=</span> <span class="pl-s1">hdul</span>[<span class="pl-c1">1</span>].<span class="pl-c1">header</span>.<span class="pl-c1">get</span>(<span class="pl-s">"MJD-OBS"</span>)
+    <span class="pl-s1">elapsed_time</span> <span class="pl-c1">=</span> <span class="pl-s1">hdul</span>[<span class="pl-c1">1</span>].<span class="pl-c1">header</span>.<span class="pl-c1">get</span>(<span class="pl-s">"TELAPSE"</span>)
+<span class="pl-c">#    MJD = Time(date_obs, format='isot', scale='utc')</span>
     <span class="pl-en">print</span>(<span class="pl-s">"src_BACKSCAL ="</span>, <span class="pl-s1">scal_src</span>)
+    <span class="pl-en">print</span>(<span class="pl-s">"elapsed_time="</span>,<span class="pl-s1">elapsed_time</span>)
 
 <span class="pl-k">with</span> <span class="pl-s1">fits</span>.<span class="pl-c1">open</span>(<span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bkg_spec</span><span class="pl-kos">}</span></span>"</span>) <span class="pl-k">as</span> <span class="pl-s1">hdul</span>:
     <span class="pl-c"># 打印包含的 HDU 列表</span>
@@ -324,7 +331,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h4>4.1.2 计算缩放背景的因子</h4>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">infile</span> <span class="pl-c1">=</span> <span class="pl-s1">src_lc</span> 
 <span class="pl-s1">bgfile</span> <span class="pl-c1">=</span> <span class="pl-s1">bkg_lc</span>
-<span class="pl-s1">outfile</span><span class="pl-c1">=</span><span class="pl-s">'net.lc'</span>
+<span class="pl-s1">outfile</span><span class="pl-c1">=</span><span class="pl-s">f'net_s<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>.lc'</span>
 <span class="pl-s1">multi</span> <span class="pl-c1">=</span> <span class="pl-c1">1.0</span>
 <span class="pl-s1">multb</span> <span class="pl-c1">=</span> <span class="pl-s1">scal_src</span> <span class="pl-c1">/</span> <span class="pl-s1">scal_bkg</span>
 <span class="pl-en">print</span>(<span class="pl-s">"multb"</span>,<span class="pl-s1">multb</span>)
@@ -346,11 +353,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-en">print</span>(<span class="pl-s">"Return code:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">returncode</span>)
     <span class="pl-en">print</span>(<span class="pl-s">"Output:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">stdout</span>)
     <span class="pl-en">print</span>(<span class="pl-s">"Error:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">stderr</span>)</pre></div>
-<h3><span>4.2 使用 <code class="notranslate">lcurve</code> 画出净光变曲线</span></h3>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">three_lc</span> <span class="pl-c1">=</span> <span class="pl-s">'net_src_bkg.lc'</span>
-<span class="pl-c"># plotfile = 'net_src_bkg.gif'</span>
-<span class="pl-s1">plotfile</span> <span class="pl-c1">=</span> <span class="pl-s">'net_src_bkg.eps'</span>
-<span class="pl-s1">time_bin</span> <span class="pl-c1">=</span> <span class="pl-c1">12.0</span>         <span class="pl-c"># 时间分箱，单位：秒</span>
+<h3><span>4.2 使用 <code class="notranslate">lcurve</code> 对净光变曲线完成时间bin</span></h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">three_lc</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'net_src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_bkg.lc'</span>)
+<span class="pl-s1">plotfile</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'net_src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_bkg.eps'</span>)
+
+<span class="pl-s1">time_bin</span> <span class="pl-c1">=</span> <span class="pl-c1">15.0</span>         <span class="pl-c"># 时间分箱，单位：秒</span>
 
 <span class="pl-c"># === Step 1：从 GTI 读取总有效曝光时间 ===</span>
 <span class="pl-k">def</span> <span class="pl-en">get_gti_exposure</span>(<span class="pl-s1">filename</span>):
@@ -367,15 +374,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         <span class="pl-s1">total_exposure</span> <span class="pl-c1">=</span> <span class="pl-en">sum</span>(<span class="pl-s1">stop</span> <span class="pl-c1">-</span> <span class="pl-s1">start</span> <span class="pl-k">for</span> <span class="pl-s1">start</span>, <span class="pl-s1">stop</span> <span class="pl-c1">in</span> <span class="pl-en">zip</span>(<span class="pl-s1">start_times</span>, <span class="pl-s1">stop_times</span>))
         <span class="pl-k">return</span> <span class="pl-s1">total_exposure</span>
 
-<span class="pl-k">try</span>:
-    <span class="pl-s1">exposure_time</span> <span class="pl-c1">=</span> <span class="pl-en">get_gti_exposure</span>(<span class="pl-s1">infile</span>)  <span class="pl-c"># 用源光变文件的 GTI</span>
-    <span class="pl-en">print</span>(<span class="pl-s">"GTI总曝光时间 ="</span>, <span class="pl-s1">exposure_time</span>)
 
-    <span class="pl-s1">bin_num</span> <span class="pl-c1">=</span> <span class="pl-s1">math</span>.<span class="pl-c1">ceil</span>(<span class="pl-s1">exposure_time</span> <span class="pl-c1">/</span> <span class="pl-s1">time_bin</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">"bin_num（基于GTI）:"</span>, <span class="pl-s1">bin_num</span>)
-<span class="pl-k">except</span> <span class="pl-v">Exception</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"出错："</span>, <span class="pl-s1">e</span>)
-    <span class="pl-en">exit</span>(<span class="pl-c1">1</span>)
+<span class="pl-s1">exposure_time</span> <span class="pl-c1">=</span> <span class="pl-en">get_gti_exposure</span>(<span class="pl-s1">infile</span>)  <span class="pl-c"># 用源光变文件的 GTI</span>
+<span class="pl-en">print</span>(<span class="pl-s">"GTI总曝光时间 ="</span>, <span class="pl-s1">exposure_time</span>)
+<span class="pl-s1">bin_num</span> <span class="pl-c1">=</span> <span class="pl-s1">math</span>.<span class="pl-c1">ceil</span>(<span class="pl-s1">elapsed_time</span> <span class="pl-c1">/</span> <span class="pl-s1">time_bin</span>)
+<span class="pl-en">print</span>(<span class="pl-s">"bin_num（基于GTI经历时间elapsed_time）:"</span>, <span class="pl-s1">bin_num</span>)
+
 
 <span class="pl-c"># === Step 2：检查文件是否存在 ===</span>
 <span class="pl-k">for</span> <span class="pl-s1">f</span>, <span class="pl-s1">name</span> <span class="pl-c1">in</span> <span class="pl-en">zip</span>([<span class="pl-s1">outfile</span>, <span class="pl-s1">infile</span>, <span class="pl-s1">bgfile</span>], [<span class="pl-s">'outfile'</span>, <span class="pl-s">'infile'</span>, <span class="pl-s">'bgfile'</span>]):
@@ -384,37 +388,23 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         <span class="pl-en">exit</span>(<span class="pl-c1">1</span>)
 
 <span class="pl-c"># === Step 3：构造 lcurve 命令 ===</span>
-<span class="pl-s1">cmd</span> <span class="pl-c1">=</span> <span class="pl-s">f'lcurve nser=3 cfile1="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">outfile</span><span class="pl-kos">}</span></span>" cfile2="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">infile</span><span class="pl-kos">}</span></span>" cfile3="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bgfile</span><span class="pl-kos">}</span></span>" '</span> \
-      <span class="pl-s">f'window="-" dtnb=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">time_bin</span><span class="pl-kos">}</span></span> nbint=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bin_num</span><span class="pl-kos">}</span></span> outfile="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">three_lc</span><span class="pl-kos">}</span></span>" '</span> \
+<span class="pl-s1">cmd</span> <span class="pl-c1">=</span>( <span class="pl-s">f'lcurve nser=3 cfile1="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">outfile</span><span class="pl-kos">}</span></span>" cfile2="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">infile</span><span class="pl-kos">}</span></span>" cfile3="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bgfile</span><span class="pl-kos">}</span></span>" '</span>
+      <span class="pl-s">f'window="-" dtnb=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">time_bin</span><span class="pl-kos">}</span></span> nbint=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bin_num</span><span class="pl-kos">}</span></span> outfile="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">three_lc</span><span class="pl-kos">}</span></span>" '</span>
       <span class="pl-s">f'plot=yes plotdev="/xw" plotdnum=3 clobber=yes'</span>
-
+)
 <span class="pl-c"># === Step 4：发送给 PLT 的命令 ===</span>
 <span class="pl-c"># plt_commands = f"exit\n"</span>
 <span class="pl-s1">plt_commands</span> <span class="pl-c1">=</span> <span class="pl-s">f"res y 0,0.1<span class="pl-cce">\n</span>hardcopy <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">plotfile</span><span class="pl-kos">}</span></span>/cps<span class="pl-cce">\n</span>exit<span class="pl-cce">\n</span>"</span>
+
 <span class="pl-c"># === Step 5：运行命令并自动传输 PLT 指令 ===</span>
-<span class="pl-k">try</span>:
-    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">subprocess</span>.<span class="pl-c1">run</span>(
-        <span class="pl-s1">cmd</span>,
-        <span class="pl-s1">check</span><span class="pl-c1">=</span><span class="pl-c1">True</span>,
-        <span class="pl-s1">capture_output</span><span class="pl-c1">=</span><span class="pl-c1">True</span>,
-        <span class="pl-s1">text</span><span class="pl-c1">=</span><span class="pl-c1">True</span>,
-        <span class="pl-s1">shell</span><span class="pl-c1">=</span><span class="pl-c1">True</span>,
-         <span class="pl-s1">input</span><span class="pl-c1">=</span><span class="pl-s1">plt_commands</span>
-    )
-    <span class="pl-en">print</span>(<span class="pl-s">"lcurve 输出:"</span>, <span class="pl-s1">result</span>.<span class="pl-c1">stdout</span>)
-<span class="pl-c">#    print(f"图已保存为: {plotfile}")</span>
-<span class="pl-k">except</span> <span class="pl-s1">subprocess</span>.<span class="pl-c1">CalledProcessError</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"执行 lcurve 时出错："</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">"命令:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">cmd</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">"返回码:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">returncode</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">"输出:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">stdout</span>)
-    <span class="pl-en">print</span>(<span class="pl-s">"错误信息:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">stderr</span>)</pre></div>
+<span class="pl-s1">subprocess</span>.<span class="pl-c1">run</span>(<span class="pl-s1">cmd</span>, <span class="pl-s1">check</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">shell</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">input</span><span class="pl-c1">=</span><span class="pl-s1">plt_commands</span>, <span class="pl-s1">text</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</pre></div>
 <h3>4.3 Python可视化光变曲线</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">astropy</span>.<span class="pl-s1">io</span> <span class="pl-k">import</span> <span class="pl-s1">fits</span>
 <span class="pl-k">import</span> <span class="pl-s1">matplotlib</span>.<span class="pl-s1">pyplot</span> <span class="pl-k">as</span> <span class="pl-s1">plt</span>
-
+<span class="pl-k">import</span> <span class="pl-s1">string</span>
 <span class="pl-c"># 打开 .lc 文件</span>
-<span class="pl-s1">filename</span> <span class="pl-c1">=</span> <span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">three_lc</span> <span class="pl-kos">}</span></span>"</span>
+<span class="pl-s1">filename</span> <span class="pl-c1">=</span> <span class="pl-s1">three_lc</span>
+<span class="pl-s1">plot_pdf</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>_net_src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_bkg.pdf'</span>)
 <span class="pl-k">with</span> <span class="pl-s1">fits</span>.<span class="pl-c1">open</span>(<span class="pl-s1">filename</span>) <span class="pl-k">as</span> <span class="pl-s1">hdul</span>:
     <span class="pl-s1">data</span> <span class="pl-c1">=</span> <span class="pl-s1">hdul</span>[<span class="pl-c1">1</span>].<span class="pl-c1">data</span>  <span class="pl-c"># 通常光变数据在扩展1（即 hdul[1]）</span>
 
@@ -431,9 +421,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s1">plt</span>.<span class="pl-c1">figure</span>(<span class="pl-s1">figsize</span><span class="pl-c1">=</span>(<span class="pl-c1">7</span>, <span class="pl-c1">5</span>))
 <span class="pl-s1">scaling_factor</span> <span class="pl-c1">=</span> <span class="pl-c1">1.0</span> <span class="pl-c1">/</span> <span class="pl-c1">12.0</span>
 <span class="pl-c"># net curve</span>
+<span class="pl-s1">time_err</span> <span class="pl-c1">=</span> <span class="pl-s1">time_bin</span><span class="pl-c1">/</span><span class="pl-c1">2</span>
 <span class="pl-s1">plt</span>.<span class="pl-c1">errorbar</span>(
     <span class="pl-s1">time</span>, 
     <span class="pl-s1">rate_net</span>, 
+    <span class="pl-s1">xerr</span><span class="pl-c1">=</span> <span class="pl-s1">time_err</span>,
     <span class="pl-s1">yerr</span><span class="pl-c1">=</span><span class="pl-s1">err_net</span>,
     <span class="pl-s1">fmt</span><span class="pl-c1">=</span><span class="pl-s">'o'</span>, 
     <span class="pl-s1">color</span><span class="pl-c1">=</span><span class="pl-s">'black'</span>, 
@@ -450,6 +442,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s1">plt</span>.<span class="pl-c1">errorbar</span>(
     <span class="pl-s1">time</span>,
     <span class="pl-s1">rate_bkg</span> <span class="pl-c1">*</span> <span class="pl-s1">scaling_factor</span>,
+    <span class="pl-s1">xerr</span><span class="pl-c1">=</span> <span class="pl-s1">time_err</span>,
     <span class="pl-s1">yerr</span><span class="pl-c1">=</span><span class="pl-s1">err_bkg</span> <span class="pl-c1">*</span> <span class="pl-s1">scaling_factor</span>,
     <span class="pl-s1">fmt</span><span class="pl-c1">=</span><span class="pl-s">'x'</span>,
     <span class="pl-s1">color</span><span class="pl-c1">=</span><span class="pl-s">'red'</span>,
@@ -460,26 +453,62 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 )
 <span class="pl-c"># 设置图形</span>
 <span class="pl-s1">plt</span>.<span class="pl-c1">xlabel</span>(<span class="pl-s">"Time (s)"</span>)
-<span class="pl-s1">plt</span>.<span class="pl-c1">ylabel</span>(<span class="pl-s">'RATE (Count/sec)'</span>)
+<span class="pl-s1">plt</span>.<span class="pl-c1">ylabel</span>(<span class="pl-s">'Count Rate (0.5-4.0 keV) (count/sec)'</span>)
 <span class="pl-s1">ymin</span> <span class="pl-c1">=</span> <span class="pl-en">min</span>(<span class="pl-s1">rate_net</span>)
 <span class="pl-s1">ymax</span> <span class="pl-c1">=</span> <span class="pl-en">max</span>(<span class="pl-s1">rate_net</span>)
 <span class="pl-c"># plt.xlim(0,1000)</span>
-<span class="pl-s1">plt</span>.<span class="pl-c1">ylim</span>(<span class="pl-c1">-</span><span class="pl-c1">0.1</span>, <span class="pl-c1">2.0</span>)
+<span class="pl-s1">plt</span>.<span class="pl-c1">ylim</span>(<span class="pl-c1">-</span><span class="pl-c1">0.01</span>, <span class="pl-c1">0.25</span>)
+<span class="pl-s1">plt</span>.<span class="pl-c1">xlim</span>(<span class="pl-c1">-</span><span class="pl-s1">time_err</span>,<span class="pl-s1">elapsed_time</span><span class="pl-c1">+</span><span class="pl-s1">time_err</span>)
+<span class="pl-c">#plt.xlim(-time_err,300)</span>
 <span class="pl-s1">plt</span>.<span class="pl-c1">title</span>(<span class="pl-s">f'ep<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>wxt<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">cmos_num</span><span class="pl-kos">}</span></span>s<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>  Bin time = <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">time_bin</span><span class="pl-kos">}</span></span>s'</span>)
+<span class="pl-s1">plt</span>.<span class="pl-c1">suptitle</span>(<span class="pl-s">f'ObsID: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obs_id</span><span class="pl-kos">}</span></span>  OBS-MJD: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-c1">MJD</span>:.5f<span class="pl-kos">}</span></span>  R.A., DEC. <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">ra_src</span>,<span class="pl-s1">dec_src</span><span class="pl-kos">}</span></span> deg'</span>, <span class="pl-s1">fontsize</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">y</span><span class="pl-c1">=</span><span class="pl-c1">0.98</span>)
 <span class="pl-s1">plt</span>.<span class="pl-c1">legend</span>()
 <span class="pl-c"># plt.grid(True)</span>
 <span class="pl-s1">plt</span>.<span class="pl-c1">tight_layout</span>()
-<span class="pl-s1">plt</span>.<span class="pl-c1">savefig</span>(<span class="pl-s">f'<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">three_lc</span> <span class="pl-kos">}</span></span>.pdf'</span>,<span class="pl-s1">dpi</span><span class="pl-c1">=</span><span class="pl-c1">400</span>,<span class="pl-s1">bbox_inches</span><span class="pl-c1">=</span><span class="pl-s">"tight"</span>)
-<span class="pl-s1">plt</span>.<span class="pl-c1">show</span>()</pre></div>
+<span class="pl-s1">plt</span>.<span class="pl-c1">savefig</span>(<span class="pl-s1">plot_pdf</span>,<span class="pl-s1">dpi</span><span class="pl-c1">=</span><span class="pl-c1">400</span>,<span class="pl-s1">bbox_inches</span><span class="pl-c1">=</span><span class="pl-s">"tight"</span>)
+<span class="pl-s1">plt</span>.<span class="pl-c1">show</span>()
+<span class="pl-en">print</span>(<span class="pl-s">f"Plot saved to <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">plot_pdf</span><span class="pl-kos">}</span></span>"</span>)</pre></div>
+<h3>4.3  保存净光变曲线</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># === Step 6：保存净光变曲线到新的 FITS ===</span>
+<span class="pl-s1">time_err</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-c1">full_like</span>(<span class="pl-s1">time</span>, <span class="pl-s1">time_bin</span> <span class="pl-c1">/</span> <span class="pl-c1">2.0</span>)  <span class="pl-c"># 时间误差</span>
+<span class="pl-s1">col_time</span> <span class="pl-c1">=</span> <span class="pl-s1">fits</span>.<span class="pl-c1">Column</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">'TIME'</span>, <span class="pl-s1">array</span><span class="pl-c1">=</span><span class="pl-s1">time</span>, <span class="pl-s1">format</span><span class="pl-c1">=</span><span class="pl-s">'D'</span>, <span class="pl-s1">unit</span><span class="pl-c1">=</span><span class="pl-s">'s'</span>)
+<span class="pl-s1">col_time_err</span> <span class="pl-c1">=</span> <span class="pl-s1">fits</span>.<span class="pl-c1">Column</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">'TIME_ERR'</span>, <span class="pl-s1">array</span><span class="pl-c1">=</span><span class="pl-s1">time_err</span>, <span class="pl-s1">format</span><span class="pl-c1">=</span><span class="pl-s">'D'</span>, <span class="pl-s1">unit</span><span class="pl-c1">=</span><span class="pl-s">'s'</span>)
+<span class="pl-s1">col_rate</span> <span class="pl-c1">=</span> <span class="pl-s1">fits</span>.<span class="pl-c1">Column</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">'RATE'</span>, <span class="pl-s1">array</span><span class="pl-c1">=</span><span class="pl-s1">rate_net</span>, <span class="pl-s1">format</span><span class="pl-c1">=</span><span class="pl-s">'E'</span>, <span class="pl-s1">unit</span><span class="pl-c1">=</span><span class="pl-s">'count/s'</span>)
+<span class="pl-s1">col_error</span> <span class="pl-c1">=</span> <span class="pl-s1">fits</span>.<span class="pl-c1">Column</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">'ERROR'</span>, <span class="pl-s1">array</span><span class="pl-c1">=</span><span class="pl-s1">err_net</span>, <span class="pl-s1">format</span><span class="pl-c1">=</span><span class="pl-s">'E'</span>, <span class="pl-s1">unit</span><span class="pl-c1">=</span><span class="pl-s">'count/s'</span>)
+
+<span class="pl-s1">cols</span> <span class="pl-c1">=</span> <span class="pl-s1">fits</span>.<span class="pl-c1">ColDefs</span>([<span class="pl-s1">col_time</span>, <span class="pl-s1">col_time_err</span>, <span class="pl-s1">col_rate</span>, <span class="pl-s1">col_error</span>])
+<span class="pl-s1">hdu</span> <span class="pl-c1">=</span> <span class="pl-s1">fits</span>.<span class="pl-c1">BinTableHDU</span>.<span class="pl-c1">from_columns</span>(<span class="pl-s1">cols</span>)
+
+<span class="pl-c"># 保留原来的头信息</span>
+<span class="pl-k">with</span> <span class="pl-s1">fits</span>.<span class="pl-c1">open</span>(<span class="pl-s1">src_lc</span>) <span class="pl-k">as</span> <span class="pl-s1">hdul</span>:
+    <span class="pl-s1">orig_header</span> <span class="pl-c1">=</span> <span class="pl-s1">hdul</span>[<span class="pl-c1">1</span>].<span class="pl-c1">header</span>.<span class="pl-c1">copy</span>()
+
+<span class="pl-k">def</span> <span class="pl-en">is_ascii_printable</span>(<span class="pl-s1">s</span>):
+    <span class="pl-k">try</span>:
+        <span class="pl-k">return</span> <span class="pl-en">all</span>(<span class="pl-s1">c</span> <span class="pl-c1">in</span> <span class="pl-s1">string</span>.<span class="pl-c1">printable</span> <span class="pl-k">for</span> <span class="pl-s1">c</span> <span class="pl-c1">in</span> <span class="pl-en">str</span>(<span class="pl-s1">s</span>))
+    <span class="pl-k">except</span> <span class="pl-v">Exception</span>:
+        <span class="pl-k">return</span> <span class="pl-c1">False</span>
+
+<span class="pl-k">for</span> <span class="pl-s1">key</span>, <span class="pl-s1">val</span> <span class="pl-c1">in</span> <span class="pl-s1">orig_header</span>.<span class="pl-c1">items</span>():
+    <span class="pl-k">if</span> <span class="pl-s1">key</span> <span class="pl-c1"><span class="pl-c1">not</span> <span class="pl-c1">in</span></span> <span class="pl-s1">hdu</span>.<span class="pl-c1">header</span> <span class="pl-c1">and</span> <span class="pl-en">is_ascii_printable</span>(<span class="pl-s1">val</span>):
+        <span class="pl-s1">hdu</span>.<span class="pl-c1">header</span>[<span class="pl-s1">key</span>] <span class="pl-c1">=</span> <span class="pl-s1">val</span>
+
+<span class="pl-c"># 创建 PrimaryHDU + TableHDU</span>
+<span class="pl-s1">primary_hdu</span> <span class="pl-c1">=</span> <span class="pl-s1">fits</span>.<span class="pl-c1">PrimaryHDU</span>(<span class="pl-s1">header</span><span class="pl-c1">=</span><span class="pl-s1">fits</span>.<span class="pl-c1">Header</span>())  <span class="pl-c"># 主HDU可以留空或拷原来的</span>
+<span class="pl-s1">new_hdul</span> <span class="pl-c1">=</span> <span class="pl-s1">fits</span>.<span class="pl-c1">HDUList</span>([<span class="pl-s1">primary_hdu</span>, <span class="pl-s1">hdu</span>])
+
+<span class="pl-s1">output_fits</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obs_id</span><span class="pl-kos">}</span></span>_net_lightcurve.fits'</span>)
+<span class="pl-s1">new_hdul</span>.<span class="pl-c1">writeto</span>(<span class="pl-s1">output_fits</span>, <span class="pl-s1">overwrite</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+
+<span class="pl-en">print</span>(<span class="pl-s">f"净光变曲线已保存到 <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">output_fits</span><span class="pl-kos">}</span></span>"</span>)</pre></div>
 <h2>5. 能谱分析</h2>
 <h3><span>5.1 使用grppha 合并能道,check <code class="notranslate">bkg.pha</code>,<code class="notranslate">rmf</code>,<code class="notranslate">arf</code> keywords to <code class="notranslate">src.pha</code></span></h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">grp_infile</span> <span class="pl-c1">=</span> <span class="pl-s1">src_spec</span>
-<span class="pl-s1">grp_outfile</span> <span class="pl-c1">=</span> <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_spec.grp'</span>
-<span class="pl-s1">grp_min_bins</span> <span class="pl-c1">=</span> <span class="pl-c1">5</span> <span class="pl-c"># 按需修改</span>
+<span class="pl-s1">grp_outfile</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'src<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>_spec.grp'</span>)
+<span class="pl-s1">grp_min_bins</span> <span class="pl-c1">=</span> <span class="pl-c1">3</span>  <span class="pl-c"># 按需修改</span>
 <span class="pl-s1">bkg_file</span> <span class="pl-c1">=</span> <span class="pl-s1">bkg_spec</span>
-<span class="pl-s1">arf_file</span> <span class="pl-c1">=</span> <span class="pl-s">f'ep<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>wxt<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">cmos_num</span><span class="pl-kos">}</span></span>s<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>.arf'</span> <span class="pl-c"># 需修改为目标源的arf</span>
-<span class="pl-s1">rmf_file</span> <span class="pl-c1">=</span> <span class="pl-s">f'ep<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>wxt<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">cmos_num</span><span class="pl-kos">}</span></span>.rmf'</span> <span class="pl-c"># 需修改为目标源的rmf</span>
-
+<span class="pl-s1">arf_file</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">work_dir</span>, <span class="pl-s">f'ep<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>wxt<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">cmos_num</span><span class="pl-kos">}</span></span>s<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">src_num</span><span class="pl-kos">}</span></span>.arf'</span>)  
+<span class="pl-s1">rmf_file</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">work_dir</span>, <span class="pl-s">f'ep<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>wxt<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">cmos_num</span><span class="pl-kos">}</span></span>.rmf'</span>)            
 <span class="pl-c"># 手动bin</span>
 <span class="pl-s1">cmd_grp</span> <span class="pl-c1">=</span> <span class="pl-s">f'grppha <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">grp_infile</span><span class="pl-kos">}</span></span> <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">grp_outfile</span><span class="pl-kos">}</span></span>  comm="group min <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">grp_min_bins</span><span class="pl-kos">}</span></span> &amp; chkey backfile <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">bkg_file</span><span class="pl-kos">}</span></span> &amp; chkey respfile <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">rmf_file</span><span class="pl-kos">}</span></span> &amp; chkey ancrfile <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">arf_file</span><span class="pl-kos">}</span></span> &amp; clobber = yes &amp; show keywords &amp; exit"'</span>
 
@@ -503,9 +532,134 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-en">print</span>(<span class="pl-s">"Return code:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">returncode</span>)
     <span class="pl-en">print</span>(<span class="pl-s">"Output:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">stdout</span>)
     <span class="pl-en">print</span>(<span class="pl-s">"Error:"</span>, <span class="pl-s1">e</span>.<span class="pl-c1">stderr</span>)</pre></div>
+<h3>5.2 使用<code class="notranslate">elisa</code>拟合能谱</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">os</span>
+<span class="pl-k">from</span> <span class="pl-s1">elisa</span> <span class="pl-k">import</span> <span class="pl-v">BayesFit</span>, <span class="pl-v">MaxLikeFit</span>,<span class="pl-v">Data</span>
+<span class="pl-k">from</span> <span class="pl-s1">elisa</span>.<span class="pl-s1">models</span> <span class="pl-k">import</span> <span class="pl-v">TBAbs</span>, <span class="pl-v">PowerLaw</span>,<span class="pl-v">BlackbodyRad</span>,<span class="pl-v">EnFlux</span>,<span class="pl-v">CutoffPL</span>
+<span class="pl-k">from</span> <span class="pl-s1">elisa</span>.<span class="pl-s1">models</span>.<span class="pl-s1">xspec</span> <span class="pl-k">import</span> <span class="pl-v">XSagauss</span>,<span class="pl-v">XSdiskbb</span>,<span class="pl-v">XSapec</span>,<span class="pl-v">XScflux</span>,<span class="pl-v">XSbbodyrad</span>
+<span class="pl-c1">WXT</span> <span class="pl-c1">=</span> <span class="pl-en">Data</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>"</span>,
+    <span class="pl-s1">erange</span><span class="pl-c1">=</span>[<span class="pl-c1">0.5</span>, <span class="pl-c1">4.0</span>],<span class="pl-s1">specfile</span><span class="pl-c1">=</span><span class="pl-s">f'<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">grp_outfile</span><span class="pl-kos">}</span></span>'</span>,<span class="pl-s1">group</span><span class="pl-c1">=</span><span class="pl-s">'opt'</span>)
+<span class="pl-c">#     erange=[0.5, 4.0],specfile=grp_outfile)</span>
+
+
+<span class="pl-s1">fig_spec</span> <span class="pl-c1">=</span> <span class="pl-c1">WXT</span>.<span class="pl-c1">plot_spec</span>(<span class="pl-s1">xlog</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">data_ylog</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+<span class="pl-s1">fig_spec</span>.<span class="pl-c1">set_size_inches</span>(<span class="pl-c1">8</span>, <span class="pl-c1">6</span>)
+<span class="pl-s1">plt</span>.<span class="pl-c1">show</span>()</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">data</span> <span class="pl-c1">=</span> [<span class="pl-c1">WXT</span>]
+
+<span class="pl-k">def</span> <span class="pl-en">build_model</span>(
+    <span class="pl-s1">model_type</span><span class="pl-c1">=</span><span class="pl-s">'powerlaw'</span>,
+    <span class="pl-s1">nH_val</span><span class="pl-c1">=</span><span class="pl-c1">0.022</span>,
+    <span class="pl-s1">flux_range</span><span class="pl-c1">=</span>(<span class="pl-c1">0.5</span>, <span class="pl-c1">10.0</span>),
+    <span class="pl-s1">norm_K</span><span class="pl-c1">=</span><span class="pl-c1">1.0</span>,
+    <span class="pl-s1">fit_nH</span><span class="pl-c1">=</span><span class="pl-c1">True</span>,
+    <span class="pl-s1">fit_norm</span><span class="pl-c1">=</span><span class="pl-c1">True</span>
+):
+    <span class="pl-s">"""</span>
+<span class="pl-s">    通用模型构建器，支持单模型或组合模型，并控制 nH 和 norm 是否拟合。</span>
+<span class="pl-s"></span>
+<span class="pl-s">    参数:</span>
+<span class="pl-s">        model_type: str</span>
+<span class="pl-s">            模型类型: 'powerlaw', 'bbodyrad', 'diskbb', 'powerlaw+bbodyrad', 'powerlaw+diskbb'</span>
+<span class="pl-s">        nH_val: float</span>
+<span class="pl-s">            氢柱密度值，可固定或拟合</span>
+<span class="pl-s">        flux_range: tuple</span>
+<span class="pl-s">            EnFlux 能量范围 (emin, emax)</span>
+<span class="pl-s">        norm_K: float or list/tuple</span>
+<span class="pl-s">            单个或多个归一化常数初始值（组合模型时用列表）</span>
+<span class="pl-s">        fit_nH: bool</span>
+<span class="pl-s">            是否拟合 nH（True 表示拟合，False 表示固定）</span>
+<span class="pl-s">        fit_norm: bool</span>
+<span class="pl-s">            是否拟合归一化参数 K/norm（True 表示拟合，False 表示固定）</span>
+<span class="pl-s"></span>
+<span class="pl-s">    返回:</span>
+<span class="pl-s">        model: 可用于 BayesFit 的完整模型对象</span>
+<span class="pl-s">    """</span>
+    <span class="pl-s1">model_type</span> <span class="pl-c1">=</span> <span class="pl-s1">model_type</span>.<span class="pl-c1">lower</span>()
+
+    <span class="pl-c"># 工具函数：构造 norm 参数</span>
+    <span class="pl-k">def</span> <span class="pl-en">build_norm</span>(<span class="pl-s1">k</span>, <span class="pl-s1">fit</span>):
+        <span class="pl-k">return</span> [<span class="pl-s1">k</span>, <span class="pl-c1">1e-5</span>, <span class="pl-c1">1e6</span>] <span class="pl-k">if</span> <span class="pl-s1">fit</span> <span class="pl-k">else</span> <span class="pl-s1">k</span>
+
+    <span class="pl-c"># Step 1: 构建基础模型</span>
+    <span class="pl-k">if</span> <span class="pl-s1">model_type</span> <span class="pl-c1">==</span> <span class="pl-s">'powerlaw'</span>:
+        <span class="pl-c1">K</span> <span class="pl-c1">=</span> <span class="pl-en">build_norm</span>(<span class="pl-s1">norm_K</span>, <span class="pl-s1">fit_norm</span>)
+        <span class="pl-s1">base_model</span> <span class="pl-c1">=</span> <span class="pl-en">PowerLaw</span>(<span class="pl-s1">alpha</span><span class="pl-c1">=</span>[<span class="pl-c1">2.0</span>, <span class="pl-c1">-</span><span class="pl-c1">1</span>, <span class="pl-c1">5</span>], <span class="pl-c1">K</span><span class="pl-c1">=</span><span class="pl-c1">K</span>)
+
+    <span class="pl-k">elif</span> <span class="pl-s1">model_type</span> <span class="pl-c1">==</span> <span class="pl-s">'bbodyrad'</span>:
+        <span class="pl-s1">norm</span> <span class="pl-c1">=</span> <span class="pl-en">build_norm</span>(<span class="pl-s1">norm_K</span>, <span class="pl-s1">fit_norm</span>)
+        <span class="pl-s1">base_model</span> <span class="pl-c1">=</span> <span class="pl-en">XSbbodyrad</span>(<span class="pl-s1">kT</span><span class="pl-c1">=</span>[<span class="pl-c1">0.5</span>, <span class="pl-c1">0.01</span>, <span class="pl-c1">5</span>], <span class="pl-s1">norm</span><span class="pl-c1">=</span><span class="pl-s1">norm</span>)
+
+    <span class="pl-k">elif</span> <span class="pl-s1">model_type</span> <span class="pl-c1">==</span> <span class="pl-s">'diskbb'</span>:
+        <span class="pl-s1">norm</span> <span class="pl-c1">=</span> <span class="pl-en">build_norm</span>(<span class="pl-s1">norm_K</span>, <span class="pl-s1">fit_norm</span>)
+        <span class="pl-s1">base_model</span> <span class="pl-c1">=</span> <span class="pl-en">XSdiskbb</span>(<span class="pl-v">Tin</span><span class="pl-c1">=</span>[<span class="pl-c1">1.0</span>, <span class="pl-c1">0.01</span>, <span class="pl-c1">5</span>], <span class="pl-s1">norm</span><span class="pl-c1">=</span><span class="pl-s1">norm</span>)
+
+    <span class="pl-k">elif</span> <span class="pl-s1">model_type</span> <span class="pl-c1">==</span> <span class="pl-s">'bbody+radpowerlaw'</span>:
+        <span class="pl-c"># norm_K 为两个值的列表或元组</span>
+        <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-en">isinstance</span>(<span class="pl-s1">norm_K</span>, (<span class="pl-s1">list</span>, <span class="pl-s1">tuple</span>)) <span class="pl-c1">or</span> <span class="pl-en">len</span>(<span class="pl-s1">norm_K</span>) <span class="pl-c1">!=</span> <span class="pl-c1">2</span>:
+            <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">"For combination models, norm_K must be a list or tuple of two values."</span>)
+        <span class="pl-s1">pl</span> <span class="pl-c1">=</span> <span class="pl-en">PowerLaw</span>(<span class="pl-s1">alpha</span><span class="pl-c1">=</span>[<span class="pl-c1">2.0</span>, <span class="pl-c1">-</span><span class="pl-c1">1</span>, <span class="pl-c1">5</span>], <span class="pl-c1">K</span><span class="pl-c1">=</span><span class="pl-en">build_norm</span>(<span class="pl-s1">norm_K</span>[<span class="pl-c1">0</span>], <span class="pl-s1">fit_norm</span>))
+        <span class="pl-s1">bb</span> <span class="pl-c1">=</span> <span class="pl-en">XSbbodyrad</span>(<span class="pl-s1">kT</span><span class="pl-c1">=</span>[<span class="pl-c1">0.5</span>, <span class="pl-c1">0.01</span>, <span class="pl-c1">5</span>], <span class="pl-s1">norm</span><span class="pl-c1">=</span><span class="pl-en">build_norm</span>(<span class="pl-s1">norm_K</span>[<span class="pl-c1">1</span>], <span class="pl-s1">fit_norm</span>))
+        <span class="pl-s1">base_model</span> <span class="pl-c1">=</span> <span class="pl-s1">bb</span> <span class="pl-c1">+</span> <span class="pl-s1">pl</span> 
+
+    <span class="pl-k">elif</span> <span class="pl-s1">model_type</span> <span class="pl-c1">==</span> <span class="pl-s">'diskbb+powerlaw'</span>:
+        <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-en">isinstance</span>(<span class="pl-s1">norm_K</span>, (<span class="pl-s1">list</span>, <span class="pl-s1">tuple</span>)) <span class="pl-c1">or</span> <span class="pl-en">len</span>(<span class="pl-s1">norm_K</span>) <span class="pl-c1">!=</span> <span class="pl-c1">2</span>:
+            <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">"For combination models, norm_K must be a list or tuple of two values."</span>)
+        <span class="pl-s1">pl</span> <span class="pl-c1">=</span> <span class="pl-en">PowerLaw</span>(<span class="pl-s1">alpha</span><span class="pl-c1">=</span>[<span class="pl-c1">2.0</span>, <span class="pl-c1">-</span><span class="pl-c1">1</span>, <span class="pl-c1">5</span>], <span class="pl-c1">K</span><span class="pl-c1">=</span><span class="pl-en">build_norm</span>(<span class="pl-s1">norm_K</span>[<span class="pl-c1">0</span>], <span class="pl-s1">fit_norm</span>))
+        <span class="pl-s1">dbb</span> <span class="pl-c1">=</span> <span class="pl-en">XSdiskbb</span>(<span class="pl-v">Tin</span><span class="pl-c1">=</span>[<span class="pl-c1">1.0</span>, <span class="pl-c1">0.01</span>, <span class="pl-c1">5</span>], <span class="pl-s1">norm</span><span class="pl-c1">=</span><span class="pl-en">build_norm</span>(<span class="pl-s1">norm_K</span>[<span class="pl-c1">1</span>], <span class="pl-s1">fit_norm</span>))
+        <span class="pl-s1">base_model</span> <span class="pl-c1">=</span><span class="pl-s1">dbb</span> <span class="pl-c1">+</span> <span class="pl-s1">pl</span> 
+        
+    <span class="pl-k">elif</span> <span class="pl-s1">model_type</span> <span class="pl-c1">==</span> <span class="pl-s">'apec'</span>:
+        <span class="pl-s1">norm</span> <span class="pl-c1">=</span> <span class="pl-en">build_norm</span>(<span class="pl-s1">norm_K</span>, <span class="pl-s1">fit_norm</span>)
+        <span class="pl-s1">base_model</span> <span class="pl-c1">=</span> <span class="pl-en">XSapec</span>(
+            
+            <span class="pl-v">Abundanc</span><span class="pl-c1">=</span><span class="pl-c1">1.0</span>,             <span class="pl-c"># 金属丰度，固定为太阳丰度</span>
+            <span class="pl-v">Redshift</span><span class="pl-c1">=</span><span class="pl-c1">0.0</span>,                 <span class="pl-c"># 红移</span>
+            <span class="pl-s1">kT</span><span class="pl-c1">=</span>[<span class="pl-c1">1.0</span>, <span class="pl-c1">0.5</span>, <span class="pl-c1">10</span>],     <span class="pl-c"># 温度参数，自行根据科学问题调整</span>
+            <span class="pl-s1">norm</span><span class="pl-c1">=</span><span class="pl-s1">norm</span>
+        )
+
+
+    <span class="pl-k">else</span>:
+        <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">f"Unsupported model_type: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">model_type</span><span class="pl-kos">}</span></span>"</span>)
+
+    <span class="pl-c"># Step 2: EnFlux 包装</span>
+    <span class="pl-s1">flux_model</span> <span class="pl-c1">=</span> <span class="pl-en">EnFlux</span>(<span class="pl-s1">emin</span><span class="pl-c1">=</span><span class="pl-s1">flux_range</span>[<span class="pl-c1">0</span>], <span class="pl-s1">emax</span><span class="pl-c1">=</span><span class="pl-s1">flux_range</span>[<span class="pl-c1">1</span>], <span class="pl-s1">ngrid</span><span class="pl-c1">=</span><span class="pl-c1">1000</span>, <span class="pl-s1">elog</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">fluxed_model</span> <span class="pl-c1">=</span> <span class="pl-en">flux_model</span>(<span class="pl-s1">base_model</span>)
+
+    <span class="pl-c"># Step 3: TBAbs 吸收</span>
+    <span class="pl-s1">absorption</span> <span class="pl-c1">=</span> <span class="pl-en">TBAbs</span>(<span class="pl-s1">nH</span><span class="pl-c1">=</span>[<span class="pl-s1">nH_val</span>, <span class="pl-c1">1e-3</span>, <span class="pl-c1">10</span>]) <span class="pl-k">if</span> <span class="pl-s1">fit_nH</span> <span class="pl-k">else</span> <span class="pl-en">TBAbs</span>(<span class="pl-s1">nH</span><span class="pl-c1">=</span><span class="pl-s1">nH_val</span>)
+
+    <span class="pl-k">return</span> <span class="pl-s1">absorption</span> <span class="pl-c1">*</span> <span class="pl-s1">fluxed_model</span>
+
+<span class="pl-c"># 拟合 nH 和 norm</span>
+<span class="pl-c">#model = build_model('diskbb+powerlaw', norm_K=[1.0,1.0],fit_nH=True, fit_norm=True)</span>
+
+<span class="pl-c"># 固定 nH，拟合 norm：</span>
+<span class="pl-c"># model = build_model('diskbb', nH_val=0.176, fit_nH=False, fit_norm=True)</span>
+
+<span class="pl-c"># 拟合 nH，固定norm</span>
+<span class="pl-c"># model = build_model('diskbb+powerlaw', norm_K=[1.0,1.0],fit_nH=True, fit_norm=False)</span>
+
+<span class="pl-c"># 固定nH，固定 norm</span>
+<span class="pl-c"># model = build_model('diskbb+powerlaw', nH_val=0.21,norm_K=[1.0,1.0], fit_nH=False, fit_norm=False)</span>
+<span class="pl-c"># 创建拟合器</span>
+<span class="pl-s1">model_name</span> <span class="pl-c1">=</span><span class="pl-s">'powerlaw'</span> <span class="pl-c"># apec拟合会失败</span>
+<span class="pl-s1">model</span> <span class="pl-c1">=</span> <span class="pl-en">build_model</span>(<span class="pl-s1">model_name</span>, <span class="pl-s1">nH_val</span><span class="pl-c1">=</span><span class="pl-c1">0.09</span>, <span class="pl-s1">norm_K</span><span class="pl-c1">=</span><span class="pl-c1">1.0</span>,<span class="pl-s1">fit_nH</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">fit_norm</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
+<span class="pl-s1">fit</span> <span class="pl-c1">=</span> <span class="pl-en">BayesFit</span>(<span class="pl-s1">data</span><span class="pl-c1">=</span>[<span class="pl-c1">WXT</span>], <span class="pl-s1">model</span><span class="pl-c1">=</span><span class="pl-s1">model</span>, <span class="pl-s1">stat</span><span class="pl-c1">=</span><span class="pl-s">'wstat'</span>)
+<span class="pl-s1">fit</span></pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">posterior</span> <span class="pl-c1">=</span> <span class="pl-s1">fit</span>.<span class="pl-c1">nuts</span>(<span class="pl-s1">progress</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
+<span class="pl-s1">posterior</span></pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">fit_result</span> <span class="pl-c1">=</span><span class="pl-s1">posterior</span>.<span class="pl-c1">plot</span>(<span class="pl-s">"data vFv rd"</span>)
+<span class="pl-s1">plt</span>.<span class="pl-c1">savefig</span>(<span class="pl-s">f'<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>_<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">model_name</span><span class="pl-kos">}</span></span>_spectrum_data.pdf'</span>,<span class="pl-s1">dpi</span><span class="pl-c1">=</span><span class="pl-c1">400</span>,<span class="pl-s1">bbox_inches</span><span class="pl-c1">=</span><span class="pl-s">"tight"</span>)</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">fig</span> <span class="pl-c1">=</span> <span class="pl-s1">posterior</span>.<span class="pl-c1">plot</span>.<span class="pl-c1">plot_qq</span>(<span class="pl-s1">detrend</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">fig_corner</span> <span class="pl-c1">=</span> <span class="pl-s1">posterior</span>.<span class="pl-c1">plot</span>.<span class="pl-c1">plot_corner</span>()
+<span class="pl-s1">corner_pdf</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">f'<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">obsid</span><span class="pl-kos">}</span></span>_<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">model_name</span><span class="pl-kos">}</span></span>_ELSISA_fit_spectrum_result.pdf'</span>)
+<span class="pl-s1">plt</span>.<span class="pl-c1">savefig</span>(<span class="pl-s1">corner_pdf</span>,<span class="pl-s1">dpi</span><span class="pl-c1">=</span><span class="pl-c1">400</span>,<span class="pl-s1">bbox_inches</span><span class="pl-c1">=</span><span class="pl-s">"tight"</span>)</pre></div>
 <h3>5.2 写一个xcm</h3>
 <p>先进入Xspec，@xspec_src.xcm，然后直接输入拟合的模型即可</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">###  xcm</span>
+<span class="pl-s1">xcm_src</span>  <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">products_dir</span>, <span class="pl-s">"xspec_src.xcm"</span>)
 <span class="pl-s1">xspec_src</span> <span class="pl-c1">=</span> <span class="pl-s">f"""data <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">grp_outfile</span><span class="pl-kos">}</span></span></span>
 <span class="pl-s">ignore **-0.5 4.0-**</span>
 <span class="pl-s">ignore bad</span>
@@ -514,7 +668,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s">setpl en</span>
 <span class="pl-s">abun wilm</span>
 <span class="pl-s">"""</span>
-<span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s">"xspec_src.xcm"</span>, <span class="pl-s">"w"</span>) <span class="pl-k">as</span> <span class="pl-s1">f</span>:
+<span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s1">xcm_src</span>, <span class="pl-s">"w"</span>) <span class="pl-k">as</span> <span class="pl-s1">f</span>:
     <span class="pl-s1">f</span>.<span class="pl-c1">write</span>(<span class="pl-s1">xspec_src</span>)</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
