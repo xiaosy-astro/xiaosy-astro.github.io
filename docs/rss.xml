@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 27 Aug 2025 07:52:52 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>反射模型：a）灯柱模型； b）弥漫的冕模型。</title><link>https://xiaosy-astro.github.io/post/fan-she-mo-xing-%EF%BC%9Aa%EF%BC%89-deng-zhu-mo-xing-%EF%BC%9B%20b%EF%BC%89-mi-man-de-mian-mo-xing-%E3%80%82.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 27 Aug 2025 10:55:56 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>反射模型：a）灯柱模型； b）弥漫的冕模型。</title><link>https://xiaosy-astro.github.io/post/fan-she-mo-xing-%EF%BC%9Aa%EF%BC%89-deng-zhu-mo-xing-%EF%BC%9B%20b%EF%BC%89-mi-man-de-mian-mo-xing-%E3%80%82.html</link><description>
 
 &lt;img alt='Image' src='https://github.com/user-attachments/assets/f237b8ec-31bd-4b54-89b8-099ae158717d' /&gt;
 
@@ -90,7 +90,11 @@ plt.show()
 
 ### 结果
 
-&lt;img width='723' height='427' alt='Image' src='https://github.com/user-attachments/assets/c913c5ed-1b24-499a-ad5c-40770c8a9161' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/IXPE-guan-ce-dao-de-hei-dong-X-she-xian-shuang-xing.html</guid><pubDate>Tue, 26 Aug 2025 03:26:37 +0000</pubDate></item><item><title>FXT的流量转流量密度</title><link>https://xiaosy-astro.github.io/post/FXT-de-liu-liang-zhuan-liu-liang-mi-du.html</link><description>### 定义流量转流量密度的计算的函数
+&lt;img width='723' height='427' alt='Image' src='https://github.com/user-attachments/assets/c913c5ed-1b24-499a-ad5c-40770c8a9161' /&gt;
+
+### 最新结果
+
+&lt;img width='723' height='430' alt='Image' src='https://github.com/user-attachments/assets/393a5a54-96b0-4f4a-8b00-de04bc1214c4' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/IXPE-guan-ce-dao-de-hei-dong-X-she-xian-shuang-xing.html</guid><pubDate>Tue, 26 Aug 2025 03:26:37 +0000</pubDate></item><item><title>FXT的流量转流量密度</title><link>https://xiaosy-astro.github.io/post/FXT-de-liu-liang-zhuan-liu-liang-mi-du.html</link><description>### 定义流量转流量密度的计算的函数
 
 ```python
 import os
