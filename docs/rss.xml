@@ -1,5 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Thu, 28 Aug 2025 11:05:55 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>GR下盘-冕系统的X射线偏振结果</title><link>https://xiaosy-astro.github.io/post/GR-xia-pan---mian-xi-tong-de-X-she-xian-pian-zhen-jie-guo.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Thu, 28 Aug 2025 11:49:01 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>安装MONK教程</title><link>https://xiaosy-astro.github.io/post/an-zhuang-MONK-jiao-cheng.html</link><description>
+### 1. 在 ./sim5 下构建 `sim5` 库
+
+首先进入到`sim5`目录下，使用vim打开`Makefile`文件，做如下修改
+```shell
+CC=gcc改为CC=gcc-15
+```
+然后构建：
+```shell
+cd sim5
+make
+```
+
+### 2 修改 electron_population.h 的第 17 行。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/an-zhuang-MONK-jiao-cheng.html</guid><pubDate>Thu, 28 Aug 2025 11:48:35 +0000</pubDate></item><item><title>GR下盘-冕系统的X射线偏振结果</title><link>https://xiaosy-astro.github.io/post/GR-xia-pan---mian-xi-tong-de-X-she-xian-pian-zhen-jie-guo.html</link><description>
 &lt;img width='550' height='347' alt='Image' src='https://github.com/user-attachments/assets/8cc6c29a-18df-4051-a8d6-697e1ba27d24' /&gt;
 
 
