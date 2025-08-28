@@ -27,7 +27,7 @@ make
 在项目目录下，
 
 ```shell
-Vim Makefile
+vim Makefile
 ```
 
 ```shell
