@@ -56,4 +56,5 @@ export PATH=/opt/homebrew/bin:$PATH
 ### 附录
 
 代码链接：[MONK](https://projects.asu.cas.cz/zhang/monk)
+使用教程：[使用教程](https://www.jianguoyun.com/p/DUgIgNQQj7uIDRjr1oUGIAA)
 文章链接：[Constraining the Size of the Corona with Fully Relativistic Calculations of Spectra of Extended Coronae. I. The Monte Carlo Radiative Transfer Code](https://iopscience.iop.org/article/10.3847/1538-4357/ab1261)
