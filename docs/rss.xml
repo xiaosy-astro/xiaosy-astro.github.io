@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Thu, 28 Aug 2025 12:02:05 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>Mac安装MONK教程</title><link>https://xiaosy-astro.github.io/post/Mac-an-zhuang-MONK-jiao-cheng.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Fri, 29 Aug 2025 13:21:57 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>立体角和面元的命名</title><link>https://xiaosy-astro.github.io/post/li-ti-jiao-he-mian-yuan-de-ming-ming.html</link><description>
+
+&lt;img width='692' height='300' alt='Image' src='https://github.com/user-attachments/assets/3bbef14f-a2f2-4b49-8feb-c6f60a4fe33f' /&gt;
+
+
+
+a) 在观察者看来，光源表现为点源；
+b) 探测器接收到的光线来自吸积盘的不同部分（比前一幅图中看到的盘更近）；
+c) 当光线经过黑洞附近传播时，光管的截面积会发生变化（此时吸积盘处于边缘朝向）。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/li-ti-jiao-he-mian-yuan-de-ming-ming.html</guid><pubDate>Fri, 29 Aug 2025 13:21:25 +0000</pubDate></item><item><title>Mac安装MONK教程</title><link>https://xiaosy-astro.github.io/post/Mac-an-zhuang-MONK-jiao-cheng.html</link><description>
 ### 0. 下载monk程序文件
 ```shell
 git clone https://projects.asu.cas.cz/zhang/monk.git
