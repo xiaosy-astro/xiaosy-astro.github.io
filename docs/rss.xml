@@ -1,5 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Fri, 05 Sep 2025 13:15:20 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>GRB 250314A的光学光谱</title><link>https://xiaosy-astro.github.io/post/GRB%20250314A-de-guang-xue-guang-pu.html</link><description>&lt;img width='649' height='279' alt='Image' src='https://github.com/user-attachments/assets/1658a2e1-a225-4fb4-9ee5-759539df6ae8' /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Sat, 06 Sep 2025 12:06:13 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>EP250905b的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250905b-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='670' height='482' alt='Image' src='https://github.com/user-attachments/assets/28435faf-16e3-49eb-a6d3-3f99bbf26b65' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='604' height='578' alt='Image' src='https://github.com/user-attachments/assets/6db375a2-7f84-4c41-ae93-a9db3a384acb' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='592' height='581' alt='Image' src='https://github.com/user-attachments/assets/aaf1f036-ab4c-4123-afda-b958df0526fa' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250905b-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Sat, 06 Sep 2025 12:05:46 +0000</pubDate></item><item><title>GRB 250314A的光学光谱</title><link>https://xiaosy-astro.github.io/post/GRB%20250314A-de-guang-xue-guang-pu.html</link><description>&lt;img width='649' height='279' alt='Image' src='https://github.com/user-attachments/assets/1658a2e1-a225-4fb4-9ee5-759539df6ae8' /&gt;
 
 
 图 2：左图：二维的可见光 (VIS, 上) 和近红外 (NIR, 下) VLT/X-shooter 光谱。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/GRB%20250314A-de-guang-xue-guang-pu.html</guid><pubDate>Fri, 05 Sep 2025 13:14:50 +0000</pubDate></item><item><title>黑体辐射</title><link>https://xiaosy-astro.github.io/post/hei-ti-fu-she.html</link><description>
