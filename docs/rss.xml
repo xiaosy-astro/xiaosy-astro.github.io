@@ -1,5 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Sat, 06 Sep 2025 13:17:59 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>EP250905a的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250905a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Mon, 08 Sep 2025 03:31:58 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>EP250907a的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250907a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='674' height='485' alt='Image' src='https://github.com/user-attachments/assets/a5afce21-d7d6-4123-b9f2-22aa3661e043' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='605' height='577' alt='Image' src='https://github.com/user-attachments/assets/4c6d53cc-fbb2-4d4a-a058-8734dff9c2eb' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='592' height='582' alt='Image' src='https://github.com/user-attachments/assets/fd82f486-76ac-45f0-82c8-2f70f9f6ae23' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250907a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Mon, 08 Sep 2025 03:31:31 +0000</pubDate></item><item><title>EP250905a的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250905a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
 
 &lt;img width='672' height='473' alt='Image' src='https://github.com/user-attachments/assets/84be33da-eeba-4e7f-bdc0-622882498195' /&gt;
 
