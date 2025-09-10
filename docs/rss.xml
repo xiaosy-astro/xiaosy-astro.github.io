@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 10 Sep 2025 02:27:44 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>VegasAfterglow使用教程</title><link>https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</link><description>### 1. 查询模型有哪些物理参数
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 10 Sep 2025 04:45:47 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>VegasAfterglow使用教程</title><link>https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</link><description>版本 ：V1.0.0 
+
+### 1. 查看模型有哪些物理参数
 
 ```python
 import VegasAfterglow
@@ -7,6 +9,7 @@ dir(VegasAfterglow.ModelParams)
 ```
 
 输出结果
+
 ```python
 ['A_star',
  'E_iso',
@@ -59,7 +62,59 @@ dir(VegasAfterglow.ModelParams)
  'xi_e',
  'xi_e_r']
 ```
-。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</guid><pubDate>Tue, 09 Sep 2025 09:50:26 +0000</pubDate></item><item><title>EP250908c的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250908c-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+### 2. 查看模型有哪些配置
+
+```python
+from VegasAfterglow import Setups
+cfg = Setups()
+dir(cfg)
+```
+
+输出结果
+
+```python
+['IC_cooling',
+ 'KN',
+ '__class__',
+ '__delattr__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getstate__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '_pybind11_conduit_v1_',
+ 'fwd_SSC',
+ 'jet',
+ 'lumi_dist',
+ 'magnetar',
+ 'medium',
+ 'phi_resol',
+ 'rtol',
+ 'rvs_SSC',
+ 'rvs_shock',
+ 't_resol',
+ 'theta_resol',
+ 'z']
+```。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</guid><pubDate>Tue, 09 Sep 2025 09:50:26 +0000</pubDate></item><item><title>EP250908c的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250908c-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
 
 &lt;img width='600' height='482' alt='Image' src='https://github.com/user-attachments/assets/d92b0cd8-cd27-46a5-8417-4732547c4546' /&gt;
 

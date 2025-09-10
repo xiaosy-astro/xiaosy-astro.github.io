@@ -10,7 +10,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="### 1. 查询模型有哪些物理参数
+<meta name="description" content="版本 ：V1.0.0 
+
+### 1. 查看模型有哪些物理参数
 
 ```python
 import VegasAfterglow
@@ -18,6 +20,7 @@ dir(VegasAfterglow.ModelParams)
 ```
 
 输出结果
+
 ```python
 ['A_star',
  'E_iso',
@@ -70,9 +73,63 @@ dir(VegasAfterglow.ModelParams)
  'xi_e',
  'xi_e_r']
 ```
-。">
+
+### 2. 查看模型有哪些配置
+
+```python
+from VegasAfterglow import Setups
+cfg = Setups()
+dir(cfg)
+```
+
+输出结果
+
+```python
+['IC_cooling',
+ 'KN',
+ '__class__',
+ '__delattr__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getstate__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '_pybind11_conduit_v1_',
+ 'fwd_SSC',
+ 'jet',
+ 'lumi_dist',
+ 'magnetar',
+ 'medium',
+ 'phi_resol',
+ 'rtol',
+ 'rvs_SSC',
+ 'rvs_shock',
+ 't_resol',
+ 'theta_resol',
+ 'z']
+```。">
 <meta property="og:title" content="VegasAfterglow使用教程">
-<meta property="og:description" content="### 1. 查询模型有哪些物理参数
+<meta property="og:description" content="版本 ：V1.0.0 
+
+### 1. 查看模型有哪些物理参数
 
 ```python
 import VegasAfterglow
@@ -80,6 +137,7 @@ dir(VegasAfterglow.ModelParams)
 ```
 
 输出结果
+
 ```python
 ['A_star',
  'E_iso',
@@ -132,7 +190,59 @@ dir(VegasAfterglow.ModelParams)
  'xi_e',
  'xi_e_r']
 ```
-。">
+
+### 2. 查看模型有哪些配置
+
+```python
+from VegasAfterglow import Setups
+cfg = Setups()
+dir(cfg)
+```
+
+输出结果
+
+```python
+['IC_cooling',
+ 'KN',
+ '__class__',
+ '__delattr__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getstate__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '_pybind11_conduit_v1_',
+ 'fwd_SSC',
+ 'jet',
+ 'lumi_dist',
+ 'magnetar',
+ 'medium',
+ 'phi_resol',
+ 'rtol',
+ 'rvs_SSC',
+ 'rvs_shock',
+ 't_resol',
+ 'theta_resol',
+ 'z']
+```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -203,7 +313,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h3>1. 查询模型有哪些物理参数</h3>
+<div class="markdown-body" id="postBody"><p>版本 ：V1.0.0</p>
+<h3>1. 查看模型有哪些物理参数</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-v">VegasAfterglow</span>
 <span class="pl-en">dir</span>(<span class="pl-v">VegasAfterglow</span>.<span class="pl-c1">ModelParams</span>)</pre></div>
 <p>输出结果</p>
@@ -256,7 +367,52 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
  <span class="pl-s">'theta_v'</span>,
  <span class="pl-s">'theta_w'</span>,
  <span class="pl-s">'xi_e'</span>,
- <span class="pl-s">'xi_e_r'</span>]</pre></div></div>
+ <span class="pl-s">'xi_e_r'</span>]</pre></div>
+<h3>2. 查看模型有哪些配置</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-v">VegasAfterglow</span> <span class="pl-k">import</span> <span class="pl-v">Setups</span>
+<span class="pl-s1">cfg</span> <span class="pl-c1">=</span> <span class="pl-en">Setups</span>()
+<span class="pl-en">dir</span>(<span class="pl-s1">cfg</span>)</pre></div>
+<p>输出结果</p>
+<div class="highlight highlight-source-python"><pre class="notranslate">[<span class="pl-s">'IC_cooling'</span>,
+ <span class="pl-s">'KN'</span>,
+ <span class="pl-s">'__class__'</span>,
+ <span class="pl-s">'__delattr__'</span>,
+ <span class="pl-s">'__dir__'</span>,
+ <span class="pl-s">'__doc__'</span>,
+ <span class="pl-s">'__eq__'</span>,
+ <span class="pl-s">'__format__'</span>,
+ <span class="pl-s">'__ge__'</span>,
+ <span class="pl-s">'__getattribute__'</span>,
+ <span class="pl-s">'__getstate__'</span>,
+ <span class="pl-s">'__gt__'</span>,
+ <span class="pl-s">'__hash__'</span>,
+ <span class="pl-s">'__init__'</span>,
+ <span class="pl-s">'__init_subclass__'</span>,
+ <span class="pl-s">'__le__'</span>,
+ <span class="pl-s">'__lt__'</span>,
+ <span class="pl-s">'__module__'</span>,
+ <span class="pl-s">'__ne__'</span>,
+ <span class="pl-s">'__new__'</span>,
+ <span class="pl-s">'__reduce__'</span>,
+ <span class="pl-s">'__reduce_ex__'</span>,
+ <span class="pl-s">'__repr__'</span>,
+ <span class="pl-s">'__setattr__'</span>,
+ <span class="pl-s">'__sizeof__'</span>,
+ <span class="pl-s">'__str__'</span>,
+ <span class="pl-s">'__subclasshook__'</span>,
+ <span class="pl-s">'_pybind11_conduit_v1_'</span>,
+ <span class="pl-s">'fwd_SSC'</span>,
+ <span class="pl-s">'jet'</span>,
+ <span class="pl-s">'lumi_dist'</span>,
+ <span class="pl-s">'magnetar'</span>,
+ <span class="pl-s">'medium'</span>,
+ <span class="pl-s">'phi_resol'</span>,
+ <span class="pl-s">'rtol'</span>,
+ <span class="pl-s">'rvs_SSC'</span>,
+ <span class="pl-s">'rvs_shock'</span>,
+ <span class="pl-s">'t_resol'</span>,
+ <span class="pl-s">'theta_resol'</span>,
+ <span class="pl-s">'z'</span>]</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
