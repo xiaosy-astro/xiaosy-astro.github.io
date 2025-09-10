@@ -114,3 +114,40 @@ dir(cfg)
  'theta_resol',
  'z']
 ```
+
+### 3. 查询拟合器
+
+```python
+from VegasAfterglow import Fitter
+fitter = Fitter(data, cfg)
+help(fitter.fit)
+```
+
+输出结果
+
+```python
+Help on method fit in module VegasAfterglow.runner:
+
+fit(param_defs: Sequence[VegasAfterglow.types.ParamDef], resolution: Tuple[float, float, float] = (0.3, 1, 10), total_steps: int = 10000, burn_frac: float = 0.3, thin: int = 1, top_k: int = 10) -> VegasAfterglow.types.FitResult method of VegasAfterglow.runner.Fitter instance
+    Run the MCMC sampler.
+
+    Parameters
+    ----------
+    param_bounds :
+        A sequence of (name, init, lower, upper) for each free parameter.
+    resolution :
+        (t_grid, theta_grid, phi_grid) for the coarse MCMC stage.
+    total_steps :
+        Total number of MCMC steps.
+    burn_frac :
+        Fraction of steps to discard as burn-in.
+    thin :
+        Thinning factor for the returned chain.
+    top_k :
+        Number of top fits to save in the result.
+
+    Returns
+    -------
+    FitResult
+```
+

@@ -125,7 +125,45 @@ dir(cfg)
  't_resol',
  'theta_resol',
  'z']
-```。">
+```
+
+### 3. 查询拟合器
+
+```python
+from VegasAfterglow import Fitter
+fitter = Fitter(data, cfg)
+help(fitter.fit)
+```
+
+输出结果
+
+```python
+Help on method fit in module VegasAfterglow.runner:
+
+fit(param_defs: Sequence[VegasAfterglow.types.ParamDef], resolution: Tuple[float, float, float] = (0.3, 1, 10), total_steps: int = 10000, burn_frac: float = 0.3, thin: int = 1, top_k: int = 10) -> VegasAfterglow.types.FitResult method of VegasAfterglow.runner.Fitter instance
+    Run the MCMC sampler.
+
+    Parameters
+    ----------
+    param_bounds :
+        A sequence of (name, init, lower, upper) for each free parameter.
+    resolution :
+        (t_grid, theta_grid, phi_grid) for the coarse MCMC stage.
+    total_steps :
+        Total number of MCMC steps.
+    burn_frac :
+        Fraction of steps to discard as burn-in.
+    thin :
+        Thinning factor for the returned chain.
+    top_k :
+        Number of top fits to save in the result.
+
+    Returns
+    -------
+    FitResult
+```
+
+。">
 <meta property="og:title" content="VegasAfterglow使用教程">
 <meta property="og:description" content="版本 ：V1.0.0 
 
@@ -242,7 +280,45 @@ dir(cfg)
  't_resol',
  'theta_resol',
  'z']
-```。">
+```
+
+### 3. 查询拟合器
+
+```python
+from VegasAfterglow import Fitter
+fitter = Fitter(data, cfg)
+help(fitter.fit)
+```
+
+输出结果
+
+```python
+Help on method fit in module VegasAfterglow.runner:
+
+fit(param_defs: Sequence[VegasAfterglow.types.ParamDef], resolution: Tuple[float, float, float] = (0.3, 1, 10), total_steps: int = 10000, burn_frac: float = 0.3, thin: int = 1, top_k: int = 10) -> VegasAfterglow.types.FitResult method of VegasAfterglow.runner.Fitter instance
+    Run the MCMC sampler.
+
+    Parameters
+    ----------
+    param_bounds :
+        A sequence of (name, init, lower, upper) for each free parameter.
+    resolution :
+        (t_grid, theta_grid, phi_grid) for the coarse MCMC stage.
+    total_steps :
+        Total number of MCMC steps.
+    burn_frac :
+        Fraction of steps to discard as burn-in.
+    thin :
+        Thinning factor for the returned chain.
+    top_k :
+        Number of top fits to save in the result.
+
+    Returns
+    -------
+    FitResult
+```
+
+。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -412,7 +488,35 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
  <span class="pl-s">'rvs_shock'</span>,
  <span class="pl-s">'t_resol'</span>,
  <span class="pl-s">'theta_resol'</span>,
- <span class="pl-s">'z'</span>]</pre></div></div>
+ <span class="pl-s">'z'</span>]</pre></div>
+<h3>3. 查询拟合器</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-v">VegasAfterglow</span> <span class="pl-k">import</span> <span class="pl-v">Fitter</span>
+<span class="pl-s1">fitter</span> <span class="pl-c1">=</span> <span class="pl-en">Fitter</span>(<span class="pl-s1">data</span>, <span class="pl-s1">cfg</span>)
+<span class="pl-en">help</span>(<span class="pl-s1">fitter</span>.<span class="pl-c1">fit</span>)</pre></div>
+<p>输出结果</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">Help</span> <span class="pl-s1">on</span> <span class="pl-s1">method</span> <span class="pl-s1">fit</span> <span class="pl-c1">in</span> <span class="pl-s1">module</span> <span class="pl-v">VegasAfterglow</span>.<span class="pl-c1">runner</span>:
+
+<span class="pl-en">fit</span>(<span class="pl-s1">param_defs</span>: <span class="pl-v">Sequence</span>[<span class="pl-v">VegasAfterglow</span>.<span class="pl-c1">types</span>.<span class="pl-c1">ParamDef</span>], <span class="pl-s1">resolution</span>: <span class="pl-v">Tuple</span>[<span class="pl-smi">float</span>, <span class="pl-smi">float</span>, <span class="pl-smi">float</span>] <span class="pl-c1">=</span> (<span class="pl-c1">0.3</span>, <span class="pl-c1">1</span>, <span class="pl-c1">10</span>), <span class="pl-s1">total_steps</span>: <span class="pl-s1">int</span> <span class="pl-c1">=</span> <span class="pl-c1">10000</span>, <span class="pl-s1">burn_frac</span>: <span class="pl-s1">float</span> <span class="pl-c1">=</span> <span class="pl-c1">0.3</span>, <span class="pl-s1">thin</span>: <span class="pl-s1">int</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>, <span class="pl-s1">top_k</span>: <span class="pl-s1">int</span> <span class="pl-c1">=</span> <span class="pl-c1">10</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">VegasAfterglow</span>.<span class="pl-c1">types</span>.<span class="pl-c1">FitResult</span> <span class="pl-s1">method</span> <span class="pl-s1">of</span> <span class="pl-v">VegasAfterglow</span>.<span class="pl-c1">runner</span>.<span class="pl-c1">Fitter</span> <span class="pl-s1">instance</span>
+    <span class="pl-v">Run</span> <span class="pl-s1">the</span> <span class="pl-c1">MCMC</span> <span class="pl-s1">sampler</span>.
+
+    <span class="pl-c1">Parameters</span>
+    <span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span>
+    <span class="pl-s1">param_bounds</span> :
+        <span class="pl-c1">A</span> <span class="pl-s1">sequence</span> <span class="pl-en">of</span> (<span class="pl-s1">name</span>, <span class="pl-s1">init</span>, <span class="pl-s1">lower</span>, <span class="pl-s1">upper</span>) <span class="pl-s1">for</span> <span class="pl-s1">each</span> <span class="pl-s1">free</span> <span class="pl-s1">parameter</span>.
+    <span class="pl-s1">resolution</span> :
+        (<span class="pl-s1">t_grid</span>, <span class="pl-s1">theta_grid</span>, <span class="pl-s1">phi_grid</span>) <span class="pl-k">for</span> <span class="pl-s1">the</span> <span class="pl-s1">coarse</span> <span class="pl-c1">MCMC</span> <span class="pl-s1">stage</span>.
+    <span class="pl-c1">total_steps</span> :
+        <span class="pl-v">Total</span> <span class="pl-s1">number</span> <span class="pl-s1">of</span> <span class="pl-c1">MCMC</span> <span class="pl-s1">steps</span>.
+    <span class="pl-s1">burn_frac</span> :
+        <span class="pl-v">Fraction</span> <span class="pl-s1">of</span> <span class="pl-s1">steps</span> <span class="pl-s1">to</span> <span class="pl-s1">discard</span> <span class="pl-s1">as</span> <span class="pl-s1">burn</span><span class="pl-c1">-</span><span class="pl-s1">in</span>.
+    <span class="pl-s1">thin</span> :
+        <span class="pl-c1">Thinning</span> <span class="pl-s1">factor</span> <span class="pl-k">for</span> <span class="pl-s1">the</span> <span class="pl-s1">returned</span> <span class="pl-s1">chain</span>.
+    <span class="pl-s1">top_k</span> :
+        <span class="pl-c1">Number</span> <span class="pl-s1">of</span> <span class="pl-s1">top</span> <span class="pl-s1">fits</span> <span class="pl-s1">to</span> <span class="pl-s1">save</span> <span class="pl-c1">in</span> <span class="pl-s1">the</span> <span class="pl-s1">result</span>.
+
+    <span class="pl-v">Returns</span>
+    <span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span><span class="pl-c1">-</span>
+    <span class="pl-v">FitResult</span></pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
