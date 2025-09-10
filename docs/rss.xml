@@ -1,5 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 10 Sep 2025 04:45:47 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>VegasAfterglow使用教程</title><link>https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</link><description>版本 ：V1.0.0 
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 10 Sep 2025 08:17:09 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>EP250910a/GRB 250910A 的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250910a-GRB%20250910A%20-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='630' height='586' alt='Image' src='https://github.com/user-attachments/assets/772aad95-014b-40d4-bc6b-fc78ee0285c4' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='630' height='604' alt='Image' src='https://github.com/user-attachments/assets/7658d0f3-0104-44ad-aeb1-f2d07b041c36' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='630' height='615' alt='Image' src='https://github.com/user-attachments/assets/0efc473b-45ad-443b-9f8f-49d1ddda0641' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250910a-GRB%20250910A%20-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Wed, 10 Sep 2025 08:16:19 +0000</pubDate></item><item><title>VegasAfterglow使用教程</title><link>https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</link><description>版本 ：V1.0.0 
 
 ### 1. 查看模型有哪些物理参数
 
