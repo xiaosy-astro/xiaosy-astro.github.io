@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Tue, 09 Sep 2025 09:50:54 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>VegasAfterglow使用教程</title><link>https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</link><description>### 1. 查询模型有哪些物理参数
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 10 Sep 2025 02:27:44 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>VegasAfterglow使用教程</title><link>https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</link><description>### 1. 查询模型有哪些物理参数
 
 ```python
 import VegasAfterglow
@@ -79,7 +79,9 @@ dir(VegasAfterglow.ModelParams)
 
 ### 3. 能谱拟合最优参数Conor图
 
-&lt;img width='600' height='582' alt='Image' src='https://github.com/user-attachments/assets/9c80f3e4-bac2-45ea-8894-74b2368a07eb' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250908d-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Tue, 09 Sep 2025 06:25:42 +0000</pubDate></item><item><title>EP250908b的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250908b-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+&lt;img width='600' height='582' alt='Image' src='https://github.com/user-attachments/assets/9c80f3e4-bac2-45ea-8894-74b2368a07eb' /&gt;
+
+最后确认是LSPM J2248+2723恒星耀发。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250908d-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Tue, 09 Sep 2025 06:25:42 +0000</pubDate></item><item><title>EP250908b的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250908b-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
 
 &lt;img width='600' height='478' alt='Image' src='https://github.com/user-attachments/assets/f9997ad8-e5ee-40ed-8681-1c54594b201a' /&gt;
 
