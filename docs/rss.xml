@@ -1,5 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Thu, 11 Sep 2025 01:37:32 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>GRB 221009A 散射的 prompt 辐射形成的晕</title><link>https://xiaosy-astro.github.io/post/GRB%20221009A%20-san-she-de-%20prompt%20-fu-she-xing-cheng-de-yun.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Fri, 12 Sep 2025 01:17:08 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>EP250911a的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250911a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>
+### 1. 光变曲线
+
+&lt;img width='660' height='478' alt='Image' src='https://github.com/user-attachments/assets/c110f3a5-b47a-46a0-a0a8-aa892c5dafd6' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='660' height='664' alt='Image' src='https://github.com/user-attachments/assets/349c6787-a257-4b28-94aa-fa34c81076c2' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='660' height='666' alt='Image' src='https://github.com/user-attachments/assets/e2a2f65a-ccab-4170-92c5-2cd0e9198ea8' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250911a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Fri, 12 Sep 2025 01:16:37 +0000</pubDate></item><item><title>GRB 221009A 散射的 prompt 辐射形成的晕</title><link>https://xiaosy-astro.github.io/post/GRB%20221009A%20-san-she-de-%20prompt%20-fu-she-xing-cheng-de-yun.html</link><description>
 &lt;img width='707' height='211' alt='Image' src='https://github.com/user-attachments/assets/27bedb6d-c010-4b3f-b767-734cebeea6e2' /&gt;
 
 图 1. 不同背景去除方法下，由 GRB 221009A 散射的 prompt 辐射形成的晕。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/GRB%20221009A%20-san-she-de-%20prompt%20-fu-she-xing-cheng-de-yun.html</guid><pubDate>Thu, 11 Sep 2025 01:36:57 +0000</pubDate></item><item><title>EP250910a/GRB 250910A 的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250910a-GRB%20250910A%20-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
