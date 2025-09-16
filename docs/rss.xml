@@ -1,5 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Mon, 15 Sep 2025 03:24:40 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>eROSITA 探测到的新星的分布</title><link>https://xiaosy-astro.github.io/post/eROSITA%20-tan-ce-dao-de-xin-xing-de-fen-bu.html</link><description>&lt;img width='652' height='467' alt='Image' src='https://github.com/user-attachments/assets/d1bff3dc-b0b1-43c7-81e0-6d392c3a37a9' /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Tue, 16 Sep 2025 12:47:11 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>ELISA使用教程</title><link>https://xiaosy-astro.github.io/post/ELISA-shi-yong-jiao-cheng.html</link><description>### 打印能量
+
+```python
+ECLAIRs_pluse1 = Data(
+    name=f'{event_name}_pluse1',
+    erange=[4.0, 20.0],
+    specfile=f'./{folder_name}/GRB250419A_PEO_1er_episode.grp',
+    respfile=f'./{folder_name}/GRB250419A_PEO_rmf_1er_episode.fits',
+    ancrfile=f'./{folder_name}/ECL-RSP-ARF_20220515T01.fits',
+    group='opt'
+)
+print(ECLAIRs_pluse1.channel_emean)
+```
+
+### 计算能量流量
+```
+import numpy as np
+Emax = round(max(ECLAIRs_pluse1.channel_emean))
+print(f'Emax={Emax}')
+Flux = posterior.flux(emin=4,emax=Emax,cl=1.,energy=True,hdi=False,comps=False)
+median_flux = Flux.median['GRB 250419A_pluse1'].value
+lower_flux, upper_flux = Flux.intervals['GRB 250419A_pluse1'][0].value, Flux.intervals['GRB 250419A_pluse1'][1].value
+exponent = np.floor(np.log10(abs(median_flux)))
+print(f'{median_flux/10**(exponent):.2f} \
+      (+{(upper_flux - median_flux)/10**(exponent):.2f}, \
+    {(lower_flux-median_flux)/10**(exponent):.2f}) e{exponent:.0f} erg/cm^2/s')
+```。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/ELISA-shi-yong-jiao-cheng.html</guid><pubDate>Tue, 16 Sep 2025 12:46:37 +0000</pubDate></item><item><title>eROSITA 探测到的新星的分布</title><link>https://xiaosy-astro.github.io/post/eROSITA%20-tan-ce-dao-de-xin-xing-de-fen-bu.html</link><description>&lt;img width='652' height='467' alt='Image' src='https://github.com/user-attachments/assets/d1bff3dc-b0b1-43c7-81e0-6d392c3a37a9' /&gt;
 
 图 2： 银河系内所有历史新星（灰色）与 eROSITA 探测到的新星（红色）的分布。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/eROSITA%20-tan-ce-dao-de-xin-xing-de-fen-bu.html</guid><pubDate>Mon, 15 Sep 2025 03:24:10 +0000</pubDate></item><item><title>The canonical behavior of the early X-ray light curve for GRBs</title><link>https://xiaosy-astro.github.io/post/The%20canonical%20behavior%20of%20the%20early%20X-ray%20light%20curve%20for%20GRBs.html</link><description>&lt;img width='714' height='564' alt='Image' src='https://github.com/user-attachments/assets/512befb0-790d-4937-9dce-3ceb46a50d86' /&gt;
 
