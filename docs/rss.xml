@@ -1,5 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 17 Sep 2025 03:39:30 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>M74 X-1</title><link>https://xiaosy-astro.github.io/post/M74%20X-1.html</link><description>&lt;img width='704' height='314' alt='Image' src='https://github.com/user-attachments/assets/a9c3957c-b147-4ecd-a2b6-5176506e62f5' /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Mon, 22 Sep 2025 02:08:02 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>HMXB 4U 1700-377</title><link>https://xiaosy-astro.github.io/post/HMXB%204U%201700-377.html</link><description>
+
+&lt;img width='223' height='448' alt='Image' src='https://github.com/user-attachments/assets/934cd626-115a-4bcb-ab5c-fcb81b6e4b36' /&gt;
+
+Fig. 4. Summary of the fit results. From top to bottom, the modulation
+curves in phase D and F, the X-ray count rate, PD (2–8 keV), PD (2–4
+keV), PD (4–8 keV), column density, photon index, and normalization of
+the powerlaw. The hatch marks in the PD (2–8 keV) panel represent the
+MDP for each time interval. The three colors indicating variability are the
+same as in Figure 3. Alt Text: Summary plot of spectral fit results over
+time
+
+原文链接：[First Detection of X-ray Polarization and Its Short-term Increase Pre- and Post-Eclipse in HMXB 4U 1700-377](https://arxiv.org/pdf/2509.14494v1)。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/HMXB%204U%201700-377.html</guid><pubDate>Mon, 22 Sep 2025 02:07:26 +0000</pubDate></item><item><title>M74 X-1</title><link>https://xiaosy-astro.github.io/post/M74%20X-1.html</link><description>&lt;img width='704' height='314' alt='Image' src='https://github.com/user-attachments/assets/a9c3957c-b147-4ecd-a2b6-5176506e62f5' /&gt;
 
 &lt;img width='426' height='366' alt='Image' src='https://github.com/user-attachments/assets/ff7e4d68-ca8a-4f31-ad80-288821035f3f' /&gt;
 
