@@ -1,5 +1,38 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Mon, 22 Sep 2025 02:08:02 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>HMXB 4U 1700-377</title><link>https://xiaosy-astro.github.io/post/HMXB%204U%201700-377.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Tue, 28 Oct 2025 11:22:27 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>macos免密 SSH 登录服务器</title><link>https://xiaosy-astro.github.io/post/macos-mian-mi-%20SSH%20-deng-lu-fu-wu-qi.html</link><description>在 macOS 上，免密 SSH 登录服务器 的标准方法是通过 SSH 公钥认证（public key authentication）.一次配置好之后，你就可以直接输入：
+```bash
+ssh username@server.address
+```
+#### 1. 在本地生成密钥
+
+在 macOS 终端输入：
+
+```bash
+ssh-keygen -t rsa -b 4096 -C 'btwang@server'
+```
+一路回车即可
+
+输出类似：
+```bash
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/yourname/.ssh/id_rsa):
+```
+生成的文件：
+	•	私钥：\~/.ssh/id_rsa（保密！）
+	•	公钥：\~/.ssh/id_rsa.pub
+
+#### 2. 上传公钥到服务器
+```bash
+ssh-copy-id username@server.address
+```
+
+
+#### 3. 免密登录
+```bash
+ssh username@server.address
+```
+
+。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/macos-mian-mi-%20SSH%20-deng-lu-fu-wu-qi.html</guid><pubDate>Tue, 28 Oct 2025 11:21:59 +0000</pubDate></item><item><title>HMXB 4U 1700-377</title><link>https://xiaosy-astro.github.io/post/HMXB%204U%201700-377.html</link><description>
 
 &lt;img width='223' height='448' alt='Image' src='https://github.com/user-attachments/assets/934cd626-115a-4bcb-ab5c-fcb81b6e4b36' /&gt;
 
