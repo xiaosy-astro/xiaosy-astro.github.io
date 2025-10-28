@@ -43,7 +43,13 @@ ssh-copy-id username@server.address
 ssh username@server.address
 ```
 
-。">
+
+#### 提交slurm作业
+
+```bash
+sbatch run_vegas.slurm
+squeue -u $USER
+```。">
 <meta property="og:title" content="macos免密 SSH 登录服务器">
 <meta property="og:description" content="在 macOS 上，免密 SSH 登录服务器 的标准方法是通过 SSH 公钥认证（public key authentication）.一次配置好之后，你就可以直接输入：
 ```bash
@@ -78,7 +84,13 @@ ssh-copy-id username@server.address
 ssh username@server.address
 ```
 
-。">
+
+#### 提交slurm作业
+
+```bash
+sbatch run_vegas.slurm
+squeue -u $USER
+```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://xiaosy-astro.github.io/post/macos-mian-mi-%20SSH%20-deng-lu-fu-wu-qi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -164,7 +176,10 @@ Enter file <span class="pl-k">in</span> which to save the key (/Users/yourname/.
 <h4>2. 上传公钥到服务器</h4>
 <div class="highlight highlight-source-shell"><pre class="notranslate">ssh-copy-id username@server.address</pre></div>
 <h4>3. 免密登录</h4>
-<div class="highlight highlight-source-shell"><pre class="notranslate">ssh username@server.address</pre></div></div>
+<div class="highlight highlight-source-shell"><pre class="notranslate">ssh username@server.address</pre></div>
+<h4>提交slurm作业</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate">sbatch run_vegas.slurm
+squeue -u <span class="pl-smi">$USER</span></pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

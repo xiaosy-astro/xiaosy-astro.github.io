@@ -31,3 +31,10 @@ ssh-copy-id username@server.address
 ssh username@server.address
 ```
 
+
+#### 提交slurm作业
+
+```bash
+sbatch run_vegas.slurm
+squeue -u $USER
+```
