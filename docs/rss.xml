@@ -1,5 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 24 Dec 2025 08:36:14 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>XRB不同谱态下吸积流的构型</title><link>https://xiaosy-astro.github.io/post/XRB-bu-tong-pu-tai-xia-xi-ji-liu-de-gou-xing.html</link><description>&lt;img width='450' height='478' alt='Image' src='https://github.com/user-attachments/assets/4bf60c09-7182-4ae5-899d-ea1c8beea9d0' /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Thu, 01 Jan 2026 13:22:24 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>FXTSoft 在 macOS (Apple Silicon) 上安装成功步骤总结</title><link>https://xiaosy-astro.github.io/post/FXTSoft%20-zai-%20macOS%20%28Apple%20Silicon%29%20-shang-an-zhuang-cheng-gong-bu-zou-zong-jie.html</link><description>环境背景
+
+	•	机器：Apple Silicon（M 系列）
+	•	系统：macOS
+	•	目标：安装 FXTSoft（x86_64）
+	•	已存在：HEASoft（arm64）
+	•	解决思路：Rosetta + Intel Homebrew + 环境切换
+&lt;html&gt;
+&lt;head&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;p class='p1'&gt;下面是一份**“FXTSoft 在 macOS（Apple Silicon）上成功安装”的精简复盘清单**，按&lt;span class='s1'&gt;&lt;b&gt;时间顺序 + 关键坑位&lt;/b&gt;&lt;/span&gt;整理，适合你以后快速查阅或给同组同学参考。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/FXTSoft%20-zai-%20macOS%20%28Apple%20Silicon%29%20-shang-an-zhuang-cheng-gong-bu-zou-zong-jie.html</guid><pubDate>Thu, 01 Jan 2026 13:21:58 +0000</pubDate></item><item><title>XRB不同谱态下吸积流的构型</title><link>https://xiaosy-astro.github.io/post/XRB-bu-tong-pu-tai-xia-xi-ji-liu-de-gou-xing.html</link><description>&lt;img width='450' height='478' alt='Image' src='https://github.com/user-attachments/assets/4bf60c09-7182-4ae5-899d-ea1c8beea9d0' /&gt;
 
 上图为能谱态下吸积流的构型，点代表ADAF盘，水平条代表薄吸积盘。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/XRB-bu-tong-pu-tai-xia-xi-ji-liu-de-gou-xing.html</guid><pubDate>Wed, 24 Dec 2025 08:35:51 +0000</pubDate></item><item><title>Disk-corona模型</title><link>https://xiaosy-astro.github.io/post/Disk-corona-mo-xing.html</link><description>
 
