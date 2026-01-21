@@ -1,5 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Thu, 01 Jan 2026 13:22:24 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>FXTSoft 在 macOS (Apple Silicon) 上安装成功步骤总结</title><link>https://xiaosy-astro.github.io/post/FXTSoft%20-zai-%20macOS%20%28Apple%20Silicon%29%20-shang-an-zhuang-cheng-gong-bu-zou-zong-jie.html</link><description>环境背景
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Wed, 21 Jan 2026 06:38:21 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>macOS下载安装KerrC</title><link>https://xiaosy-astro.github.io/post/macOS-xia-zai-an-zhuang-KerrC.html</link><description>## 一、准备
+### 1. 下载KerrC
+```shell
+git clone https://gitlab.com/krawcz/kerrc-x-ray-fitting-code.git
+```
+
+### 2. 安装hdf5
+
+```shell
+brew install hdf5
+```
+### 3. 下载安装sherpa
+
+```shell
+conda create -n sherpa -c https://cxc.cfa.harvard.edu/conda/sherpa -c conda-forge sherpa
+conda activate sherpa
+conda install -c conda-forge matplotlib astropy
+```
+### 4. 下载和安装boost
+
+下载
+```shell
+wget https://archives.boost.io/release/1.90.0/source/boost_1_89_0.tar.bz2
+```
+安装
+```shell
+cd boost_1_89_0
+./bootstrap.sh --with-libraries=python
+./b2 -j4
+# 屏幕打印
+# The Boost C++ Libraries were successfully built!
+# The following directory should be added to compiler include paths:
+# /Users/btwang/workshop/code/polarized_radiation_transfer_code/kerrc-x-ray-fitting-code/boost_1_89_0
+# The following directory should be added to linker library paths:
+# /Users/btwang/workshop/code/polarized_radiation_transfer_code/kerrc-x-ray-fitting-code/boost_1_89_0/stage/lib
+```
+
+## 二、编译
+在进入kerrc-x-ray-fitting-code/raytracing/目录，临时把 Homebrew 放到前面（Apple Silicon 一般是 /opt/homebrew）：
+```shell
+export PATH='/opt/homebrew/bin:$PATH'
+which h5c++
+# 现在应该是 /opt/homebrew/bin/h5c++
+```
+```shell
+make
+# 最后打印的内容：5 warnings generated.
+# h5c++ -lm aliev.o glampedakis.o kerr.o metric.o pani.o wind.o N.o corona.o dataWriter.o xTrack.o -o xTrack
+```
+## 三、运行
+使用以下类型的语句运行代码： ./xTrack -d -D -K -n 2000 -r -10 -c 0000000 -f outdir 这些选项在代码 xTrack.cpp 中进行了解释。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/macOS-xia-zai-an-zhuang-KerrC.html</guid><pubDate>Wed, 21 Jan 2026 06:37:52 +0000</pubDate></item><item><title>FXTSoft 在 macOS (Apple Silicon) 上安装成功步骤总结</title><link>https://xiaosy-astro.github.io/post/FXTSoft%20-zai-%20macOS%20%28Apple%20Silicon%29%20-shang-an-zhuang-cheng-gong-bu-zou-zong-jie.html</link><description>环境背景
 
 	•	机器：Apple Silicon（M 系列）
 	•	系统：macOS
