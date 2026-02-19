@@ -117,7 +117,7 @@ make
 <meta property="og:url" content="https://xiaosy-astro.github.io/post/macOS-xia-zai-an-zhuang-KerrC.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>macOS下载安装KerrC</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 
 </head>
@@ -185,45 +185,37 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><h2>一、准备</h2>
 <h3>1. 下载KerrC</h3>
-<pre lang="shell" class="notranslate"><code class="notranslate">git clone https://gitlab.com/krawcz/kerrc-x-ray-fitting-code.git
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">git clone https://gitlab.com/krawcz/kerrc-x-ray-fitting-code.git</pre></div>
 <h3>2. 安装hdf5</h3>
-<pre lang="shell" class="notranslate"><code class="notranslate">brew install hdf5
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">brew install hdf5</pre></div>
 <h3>3. 下载安装sherpa</h3>
-<pre lang="shell" class="notranslate"><code class="notranslate">conda create -n sherpa -c https://cxc.cfa.harvard.edu/conda/sherpa -c conda-forge sherpa
+<div class="highlight highlight-source-shell"><pre class="notranslate">conda create -n sherpa -c https://cxc.cfa.harvard.edu/conda/sherpa -c conda-forge sherpa
 conda activate sherpa
-conda install -c conda-forge matplotlib astropy
-</code></pre>
+conda install -c conda-forge matplotlib astropy</pre></div>
 <h3>4. 下载和安装boost</h3>
 <p>下载</p>
-<pre lang="shell" class="notranslate"><code class="notranslate">wget https://archives.boost.io/release/1.90.0/source/boost_1_89_0.tar.bz2
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">wget https://archives.boost.io/release/1.90.0/source/boost_1_89_0.tar.bz2</pre></div>
 <p>安装</p>
-<pre lang="shell" class="notranslate"><code class="notranslate">cd boost_1_89_0
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c1">cd</span> boost_1_89_0
 ./bootstrap.sh --with-libraries=python
 ./b2 -j4
-# 屏幕打印
-# The Boost C++ Libraries were successfully built!
-# The following directory should be added to compiler include paths:
-# /Users/btwang/workshop/code/polarized_radiation_transfer_code/kerrc-x-ray-fitting-code/boost_1_89_0
-# The following directory should be added to linker library paths:
-# /Users/btwang/workshop/code/polarized_radiation_transfer_code/kerrc-x-ray-fitting-code/boost_1_89_0/stage/lib
-</code></pre>
+<span class="pl-c"><span class="pl-c">#</span> 屏幕打印</span>
+<span class="pl-c"><span class="pl-c">#</span> The Boost C++ Libraries were successfully built!</span>
+<span class="pl-c"><span class="pl-c">#</span> The following directory should be added to compiler include paths:</span>
+<span class="pl-c"><span class="pl-c">#</span> /Users/btwang/workshop/code/polarized_radiation_transfer_code/kerrc-x-ray-fitting-code/boost_1_89_0</span>
+<span class="pl-c"><span class="pl-c">#</span> The following directory should be added to linker library paths:</span>
+<span class="pl-c"><span class="pl-c">#</span> /Users/btwang/workshop/code/polarized_radiation_transfer_code/kerrc-x-ray-fitting-code/boost_1_89_0/stage/lib</span></pre></div>
 <h2>二、编译</h2>
 <p>在进入kerrc-x-ray-fitting-code/raytracing/目录，临时把 Homebrew 放到前面（Apple Silicon 一般是 /opt/homebrew）：</p>
-<pre lang="shell" class="notranslate"><code class="notranslate">export PATH="/opt/homebrew/bin:$PATH"
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-k">export</span> PATH=<span class="pl-s"><span class="pl-pds">"</span>/opt/homebrew/bin:<span class="pl-smi">$PATH</span><span class="pl-pds">"</span></span>
 which h5c++
-# 现在应该是 /opt/homebrew/bin/h5c++
-</code></pre>
-<pre lang="shell" class="notranslate"><code class="notranslate">make
-# 最后打印的内容：5 warnings generated.
-# h5c++ -lm aliev.o glampedakis.o kerr.o metric.o pani.o wind.o N.o corona.o dataWriter.o xTrack.o -o xTrack
-</code></pre>
+<span class="pl-c"><span class="pl-c">#</span> 现在应该是 /opt/homebrew/bin/h5c++</span></pre></div>
+<div class="highlight highlight-source-shell"><pre class="notranslate">make
+<span class="pl-c"><span class="pl-c">#</span> 最后打印的内容：5 warnings generated.</span>
+<span class="pl-c"><span class="pl-c">#</span> h5c++ -lm aliev.o glampedakis.o kerr.o metric.o pani.o wind.o N.o corona.o dataWriter.o xTrack.o -o xTrack</span></pre></div>
 <h2>三、运行</h2>
 <p>使用以下类型的语句运行代码： ./xTrack -d -D -K -n 2000 -r -10 -c 0000000 -f outdir 这些选项在代码 xTrack.cpp 中进行了解释。</p>
-<pre lang="shell" class="notranslate"><code class="notranslate"> ./xTrack -d -D -K -n 2000 -r -10 -c 0000000 -f outdir
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate"> ./xTrack -d -D -K -n 2000 -r -10 -c 0000000 -f outdir</pre></div>
 <p>参数来自 TCLAP 的命令行定义，含义如下（对应 xTrack.cpp）：</p>
 <p>-d: 选择热盘模拟（与 -g/-p 互斥）xTrack.cpp (line 166)，xTrack.cpp (line 171)<br>
 -D: 启用 Chandrasekhar 盘面反射 xTrack.cpp (line 189)<br>
@@ -237,80 +229,77 @@ which h5c++
 <ol>
 <li>将quickstart/目录copy到boost_1_89_0/libs/python/example/quickstart</li>
 </ol>
-<pre lang="shell" class="notranslate"><code class="notranslate">cp -R quickstart boost_1_89_0/libs/python/example/quickstart
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">cp -R quickstart boost_1_89_0/libs/python/example/quickstart</pre></div>
 <ol start="2">
 <li>切换到boost_1_89_0/libs/python/example/quickstart/quickstart/，将以下内容替换quickstart/comp</li>
 </ol>
-<pre lang="shell" class="notranslate"><code class="notranslate">#!/usr/bin/env bash
-set -euo pipefail
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#!</span>/usr/bin/env bash</span>
+<span class="pl-c1">set</span> -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &amp;&amp; pwd)"
+SCRIPT_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>cd <span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>dirname <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BASH_SOURCE[0]}</span><span class="pl-pds">"</span></span><span class="pl-pds">)</span></span><span class="pl-pds">"</span></span> <span class="pl-k">&amp;&amp;</span> pwd<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
 
-if [[ -z "${BOOST_ROOT:-}" ]]; then
-  PROBE="${SCRIPT_DIR}"
-  for _ in {1..8}; do
-    if [[ -f "${PROBE}/boost/version.hpp" ]]; then
-      BOOST_ROOT="${PROBE}"
-      break
-    elif [[ -f "${PROBE}/boost_1_89_0/boost/version.hpp" ]]; then
-      BOOST_ROOT="${PROBE}/boost_1_89_0"
-      break
-    fi
-    PROBE="$(dirname "${PROBE}")"
-  done
-fi
+<span class="pl-k">if</span> [[ <span class="pl-k">-z</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_ROOT<span class="pl-k">:-</span>}</span><span class="pl-pds">"</span></span> ]]<span class="pl-k">;</span> <span class="pl-k">then</span>
+  PROBE=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${SCRIPT_DIR}</span><span class="pl-pds">"</span></span>
+  <span class="pl-k">for</span> <span class="pl-smi">_</span> <span class="pl-k">in</span> {1..8}<span class="pl-k">;</span> <span class="pl-k">do</span>
+    <span class="pl-k">if</span> [[ <span class="pl-k">-f</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${PROBE}</span>/boost/version.hpp<span class="pl-pds">"</span></span> ]]<span class="pl-k">;</span> <span class="pl-k">then</span>
+      BOOST_ROOT=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${PROBE}</span><span class="pl-pds">"</span></span>
+      <span class="pl-c1">break</span>
+    <span class="pl-k">elif</span> [[ <span class="pl-k">-f</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${PROBE}</span>/boost_1_89_0/boost/version.hpp<span class="pl-pds">"</span></span> ]]<span class="pl-k">;</span> <span class="pl-k">then</span>
+      BOOST_ROOT=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${PROBE}</span>/boost_1_89_0<span class="pl-pds">"</span></span>
+      <span class="pl-c1">break</span>
+    <span class="pl-k">fi</span>
+    PROBE=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>dirname <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${PROBE}</span><span class="pl-pds">"</span></span><span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
+  <span class="pl-k">done</span>
+<span class="pl-k">fi</span>
 
-if [[ -z "${BOOST_ROOT:-}" ]]; then
-  BOOST_ROOT="$(brew --prefix boost)"
-fi
+<span class="pl-k">if</span> [[ <span class="pl-k">-z</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_ROOT<span class="pl-k">:-</span>}</span><span class="pl-pds">"</span></span> ]]<span class="pl-k">;</span> <span class="pl-k">then</span>
+  BOOST_ROOT=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>brew --prefix boost<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
+<span class="pl-k">fi</span>
 
-BOOST_LIB_DIR="${BOOST_ROOT}/stage/lib"
-if [[ ! -d "${BOOST_LIB_DIR}" ]]; then
-  BOOST_LIB_DIR="${BOOST_ROOT}/lib"
-fi
+BOOST_LIB_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_ROOT}</span>/stage/lib<span class="pl-pds">"</span></span>
+<span class="pl-k">if</span> [[ <span class="pl-k">!</span> <span class="pl-k">-d</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_LIB_DIR}</span><span class="pl-pds">"</span></span> ]]<span class="pl-k">;</span> <span class="pl-k">then</span>
+  BOOST_LIB_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_ROOT}</span>/lib<span class="pl-pds">"</span></span>
+<span class="pl-k">fi</span>
 
-H5CXX="$(command -v h5c++ || true)"
-if [[ -n "${H5CXX}" ]]; then
-  HDF5_PREFIX="$(cd "$(dirname "${H5CXX}")/.." &amp;&amp; pwd)"
-else
-  HDF5_PREFIX="/opt/homebrew"
-fi
-HDF5_INC="${HDF5_PREFIX}/include"
-HDF5_LIB="${HDF5_PREFIX}/lib"
+H5CXX=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>command -v h5c++ <span class="pl-k">||</span> true<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
+<span class="pl-k">if</span> [[ <span class="pl-k">-n</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${H5CXX}</span><span class="pl-pds">"</span></span> ]]<span class="pl-k">;</span> <span class="pl-k">then</span>
+  HDF5_PREFIX=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>cd <span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>dirname <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${H5CXX}</span><span class="pl-pds">"</span></span><span class="pl-pds">)</span></span>/..<span class="pl-pds">"</span></span> <span class="pl-k">&amp;&amp;</span> pwd<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
+<span class="pl-k">else</span>
+  HDF5_PREFIX=<span class="pl-s"><span class="pl-pds">"</span>/opt/homebrew<span class="pl-pds">"</span></span>
+<span class="pl-k">fi</span>
+HDF5_INC=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${HDF5_PREFIX}</span>/include<span class="pl-pds">"</span></span>
+HDF5_LIB=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${HDF5_PREFIX}</span>/lib<span class="pl-pds">"</span></span>
 
-PY_INC="$(python3-config --includes)"
-PY_LDFLAGS="$(python3-config --ldflags)"
-NUMPY_INC="$(python3 - &lt;&lt;'PY'
-import numpy
-print(numpy.get_include())
-PY
-)"
+PY_INC=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>python3-config --includes<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
+PY_LDFLAGS=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>python3-config --ldflags<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
+NUMPY_INC=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>python3 - <span class="pl-s"><span class="pl-k">&lt;&lt;</span>'<span class="pl-k">PY</span>'</span></span></span>
+<span class="pl-s"><span class="pl-s"><span class="pl-s">import numpy</span></span></span>
+<span class="pl-s"><span class="pl-s"><span class="pl-s">print(numpy.get_include())</span></span></span>
+<span class="pl-s"><span class="pl-s"><span class="pl-s"><span class="pl-k">PY</span></span></span></span>
+<span class="pl-s"><span class="pl-s"><span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
 
-BOOST_PY_LIB="$(ls "${BOOST_LIB_DIR}"/libboost_python*.dylib "${BOOST_LIB_DIR}"/libboost_python*.a 2&gt;/dev/null | head -n 1)"
-BOOST_NUMPY_LIB="$(ls "${BOOST_LIB_DIR}"/libboost_numpy*.dylib "${BOOST_LIB_DIR}"/libboost_numpy*.a 2&gt;/dev/null | head -n 1)"
+BOOST_PY_LIB=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>ls <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_LIB_DIR}</span><span class="pl-pds">"</span></span>/libboost_python<span class="pl-k">*</span>.dylib <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_LIB_DIR}</span><span class="pl-pds">"</span></span>/libboost_python<span class="pl-k">*</span>.a <span class="pl-k">2&gt;</span>/dev/null <span class="pl-k">|</span> head -n 1<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
+BOOST_NUMPY_LIB=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>ls <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_LIB_DIR}</span><span class="pl-pds">"</span></span>/libboost_numpy<span class="pl-k">*</span>.dylib <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_LIB_DIR}</span><span class="pl-pds">"</span></span>/libboost_numpy<span class="pl-k">*</span>.a <span class="pl-k">2&gt;</span>/dev/null <span class="pl-k">|</span> head -n 1<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
 
-if [[ -z "${BOOST_PY_LIB}" || -z "${BOOST_NUMPY_LIB}" ]]; then
-  echo "Boost.Python/NumPy libs not found in ${BOOST_LIB_DIR}" &gt;&amp;2
-  exit 1
-fi
+<span class="pl-k">if</span> [[ <span class="pl-k">-z</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_PY_LIB}</span><span class="pl-pds">"</span></span> <span class="pl-k">||</span> <span class="pl-k">-z</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_NUMPY_LIB}</span><span class="pl-pds">"</span></span> ]]<span class="pl-k">;</span> <span class="pl-k">then</span>
+  <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>Boost.Python/NumPy libs not found in <span class="pl-smi">${BOOST_LIB_DIR}</span><span class="pl-pds">"</span></span> <span class="pl-k">&gt;&amp;2</span>
+  <span class="pl-c1">exit</span> 1
+<span class="pl-k">fi</span>
 
 c++ -std=c++11 -fPIC -O0 -g -Wall \
-  -I"${BOOST_ROOT}" -I"${NUMPY_INC}" ${PY_INC} \
-  -I"${HDF5_INC}" \
+  -I<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_ROOT}</span><span class="pl-pds">"</span></span> -I<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${NUMPY_INC}</span><span class="pl-pds">"</span></span> <span class="pl-smi">${PY_INC}</span> \
+  -I<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${HDF5_INC}</span><span class="pl-pds">"</span></span> \
   -c -o dataReader.o dataReader.cpp
 
-# Build a Python extension module on macOS.
+<span class="pl-c"><span class="pl-c">#</span> Build a Python extension module on macOS.</span>
 c++ -bundle -undefined dynamic_lookup -o dataReader.so dataReader.o \
-  "${BOOST_PY_LIB}" "${BOOST_NUMPY_LIB}" \
-  -L"${HDF5_LIB}" -lhdf5_cpp -lhdf5 \
-  ${PY_LDFLAGS}
-</code></pre>
+  <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_PY_LIB}</span><span class="pl-pds">"</span></span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${BOOST_NUMPY_LIB}</span><span class="pl-pds">"</span></span> \
+  -L<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">${HDF5_LIB}</span><span class="pl-pds">"</span></span> -lhdf5_cpp -lhdf5 \
+  <span class="pl-smi">${PY_LDFLAGS}</span></pre></div>
 <ol start="3">
 <li>编译</li>
 </ol>
-<pre lang="shell" class="notranslate"><code class="notranslate">./comp
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">./comp</pre></div>
 <h2>五、下载XILLVER的Cp_3.6表格</h2>
 <pre class="notranslate"><code class="notranslate">wget https://sites.srl.caltech.edu/~javier/xillver/tables/xillverCp_v3.6.fits
 </code></pre></div>
