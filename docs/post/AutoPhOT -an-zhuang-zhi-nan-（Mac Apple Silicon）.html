@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://xiaosy-astro.github.io/post/AutoPhOT%20-an-zhuang-zhi-nan-%EF%BC%88Mac%20Apple%20Silicon%EF%BC%89.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>AutoPhOT 安装指南（Mac Apple Silicon）</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -94,50 +94,59 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ul>
 <p>建议在全新终端执行以下步骤。</p>
 <h2>1. 安装 Rosetta（首次需要）</h2>
-<div class="highlight highlight-source-shell"><pre class="notranslate">softwareupdate --install-rosetta --agree-to-license</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">softwareupdate --install-rosetta --agree-to-license
+</code></pre>
 <h2>2. 创建并固定 osx-64 的 conda 环境</h2>
 <p>AutoPhOT 依赖 <code class="notranslate">astroscrappy==1.0.8</code>，该版本在 <code class="notranslate">osx-arm64</code> 没有包，<br>
 因此必须使用 <code class="notranslate">osx-64</code>（Rosetta）。</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">CONDA_SUBDIR=osx-64 conda create -n autophot_env python=3.7 -y
+<pre lang="bash" class="notranslate"><code class="notranslate">CONDA_SUBDIR=osx-64 conda create -n autophot_env python=3.7 -y
 conda activate autophot_env
-conda config --env --set subdir osx-64</pre></div>
+conda config --env --set subdir osx-64
+</code></pre>
 <h2>3. 安装 AutoPhOT</h2>
-<div class="highlight highlight-source-shell"><pre class="notranslate">conda install -c conda-forge -c astropy -c astro-sean autophot -y</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">conda install -c conda-forge -c astropy -c astro-sean autophot -y
+</code></pre>
 <h3>3.1 修复 Python 搜索路径（必须）</h3>
 <p>该 conda 包会把 AutoPhOT 安装到 <code class="notranslate">$CONDA_PREFIX/site-packages</code>，<br>
 但默认 <code class="notranslate">sys.path</code> 只包含 <code class="notranslate">$CONDA_PREFIX/lib/python3.7/site-packages</code>。<br>
 需要添加一个 <code class="notranslate">.pth</code> 文件。</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">python - <span class="pl-s"><span class="pl-k">&lt;&lt;</span>'<span class="pl-k">PY</span>'</span>
-<span class="pl-s">import os, sys</span>
-<span class="pl-s">pth = os.path.join(sys.prefix, "lib", "python3.7", "site-packages", "autophot_conda_site.pth")</span>
-<span class="pl-s">target = os.path.join(sys.prefix, "site-packages")</span>
-<span class="pl-s">with open(pth, "w") as f:</span>
-<span class="pl-s">    f.write(target + "\n")</span>
-<span class="pl-s">print(pth, "-&gt;", target)</span>
-<span class="pl-s"><span class="pl-k">PY</span></span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">python - &lt;&lt;'PY'
+import os, sys
+pth = os.path.join(sys.prefix, "lib", "python3.7", "site-packages", "autophot_conda_site.pth")
+target = os.path.join(sys.prefix, "site-packages")
+with open(pth, "w") as f:
+    f.write(target + "\n")
+print(pth, "-&gt;", target)
+PY
+</code></pre>
 <p>验证（建议在非仓库目录执行）：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c1">cd</span> /tmp
-python -c <span class="pl-s"><span class="pl-pds">"</span>import autophot; print(autophot.__version__)<span class="pl-pds">"</span></span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">cd /tmp
+python -c "import autophot; print(autophot.__version__)"
+</code></pre>
 <blockquote>
 <p>如果在 AutoPhOT 源码目录下执行导入，可能会优先加载本地目录的同名包，<br>
 建议在 <code class="notranslate">/tmp</code> 等目录验证环境安装是否正确。</p>
 </blockquote>
 <h2>4. 安装可选功能 1：Astrometry.net</h2>
-<div class="highlight highlight-source-shell"><pre class="notranslate">HOMEBREW_NO_AUTO_UPDATE=1 brew install astrometry-net</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">HOMEBREW_NO_AUTO_UPDATE=1 brew install astrometry-net
+</code></pre>
 <p>下载索引文件（约 40GB），建议放在：</p>
 <pre class="notranslate"><code class="notranslate">/opt/homebrew/Cellar/astrometry-net/0.97/data
 </code></pre>
 <p><a href="https://data.astrometry.net/4200/" rel="nofollow">下载网址</a><br>
 可选：设置环境变量（让 solve-field 能稳定找到索引）：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-k">export</span> ASTROMETRY_NET_DATA_DIR=/opt/homebrew/Cellar/astrometry-net/0.97/data</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">export ASTROMETRY_NET_DATA_DIR=/opt/homebrew/Cellar/astrometry-net/0.97/data
+</code></pre>
 <p>验证：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">solve-field /path/to/your_image.fits --overwrite --no-plot</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">solve-field /path/to/your_image.fits --overwrite --no-plot
+</code></pre>
 <p>在 AutoPhOT 默认配置中设置：</p>
 <pre class="notranslate"><code class="notranslate">solve_field_exe_loc: /opt/homebrew/bin/solve-field
 </code></pre>
 <h2>5. 安装可选功能 2：HOTPANTS</h2>
 <h3>5.1 安装 cfitsio</h3>
-<div class="highlight highlight-source-shell"><pre class="notranslate">HOMEBREW_NO_AUTO_UPDATE=1 brew install cfitsio</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">HOMEBREW_NO_AUTO_UPDATE=1 brew install cfitsio
+</code></pre>
 <h3>5.2 修改 Makefile</h3>
 <p>在 <code class="notranslate">hotpants/Makefile</code> 中：</p>
 <pre class="notranslate"><code class="notranslate">CFITSIOINCDIR = /opt/homebrew/opt/cfitsio/include
@@ -166,8 +175,9 @@ LIBS  =  -L$(LIBDIR) -lm -lcfitsio
 <li><code class="notranslate">functions.c</code></li>
 </ul>
 <h3>5.4 编译</h3>
-<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c1">cd</span> hotpants
-make -f Makefile.macosx</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">cd hotpants
+make -f Makefile.macosx
+</code></pre>
 <p>生成的可执行文件：</p>
 <pre class="notranslate"><code class="notranslate">/path/to/hotpants/hotpants
 </code></pre>
@@ -176,17 +186,20 @@ make -f Makefile.macosx</pre></div>
 </code></pre>
 <h2>6. 安装可选功能 3：PyZOGY</h2>
 <p>PyZOGY 依赖 <code class="notranslate">statsmodels</code>，Python 3.7 下建议使用 0.13.x：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">conda activate autophot_env
-conda install -c conda-forge <span class="pl-s"><span class="pl-pds">"</span>statsmodels&lt;0.14<span class="pl-pds">"</span></span> -y
-<span class="pl-c1">cd</span> /path/to/PyZOGY
-pip install --no-deps <span class="pl-c1">.</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">conda activate autophot_env
+conda install -c conda-forge "statsmodels&lt;0.14" -y
+cd /path/to/PyZOGY
+pip install --no-deps .
+</code></pre>
 <p>验证：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">python -c <span class="pl-s"><span class="pl-pds">"</span>import PyZOGY, statsmodels; print(PyZOGY.__file__); print(statsmodels.__version__)<span class="pl-pds">"</span></span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">python -c "import PyZOGY, statsmodels; print(PyZOGY.__file__); print(statsmodels.__version__)"
+</code></pre>
 <h2>7. 常见问题</h2>
 <ul>
 <li>conda 安装时提示包损坏：可尝试</li>
 </ul>
-<div class="highlight highlight-source-shell"><pre class="notranslate">conda clean --packages --tarballs -y</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">conda clean --packages --tarballs -y
+</code></pre>
 <ul>
 <li><code class="notranslate">import autophot</code> 没有 <code class="notranslate">__version__</code>：通常是运行目录下有同名文件夹导致，<br>
 在非源码目录执行导入即可。</li>
