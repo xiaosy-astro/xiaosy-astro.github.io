@@ -1,2 +1,760 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Mon, 27 Apr 2026 17:16:29 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Stargazing Adventures</title><link>https://xiaosy-astro.github.io</link><description>记录一些有用的教程</description><copyright>Stargazing Adventures</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://xiaosy-astro.github.io</link></image><lastBuildDate>Tue, 28 Apr 2026 17:43:08 +0000</lastBuildDate><managingEditor>Stargazing Adventures</managingEditor><ttl>60</ttl><webMaster>Stargazing Adventures</webMaster><item><title>ai-research-writing</title><link>https://xiaosy-astro.github.io/post/ai-research-writing.html</link><description>## 表达润色（英文论文）
+```markdown
+\textbf{Role}  
+You are a senior academic editor in the field of astrophysics, with extensive experience in improving manuscripts submitted to top-tier journals such as ApJ, MNRAS, and A\&amp;A.
+
+\textbf{Task}  
+Please perform a deep refinement and rewriting of the provided \textbf{English LaTeX code snippet}. The goal is not only to correct errors, but also to comprehensively enhance the scientific rigor, clarity, and overall readability of the text, ensuring it meets the highest publication standards.
+
+\textbf{Constraints}  
+1. Academic standards and sentence optimization (core requirement):  
+- Improve rigor: Adjust sentence structures to align with astrophysical academic writing conventions, strengthening formality and logical coherence.  
+- Refine syntax: Improve the flow of complex or awkward sentences and eliminate expressions that reflect non-native usage.  
+- Zero-error principle: Correct all spelling, grammar, punctuation, and article usage errors.
+
+2. Vocabulary and tone control:  
+- Formal tone: Use standard academic written English. Do not use contractions (for example, use ``it is'' instead of ``it's'', and ``does not'' instead of ``doesn't'').  
+- Word choice: Avoid unnecessarily complex or obscure vocabulary. Use clear, commonly accepted terminology in astrophysical research.  
+- Possessive structures: Avoid noun possessives (especially for models, methods, or systems). Prefer ``of'' constructions, noun modifiers, or passive voice (for example, use ``the performance of the model'' instead of ``the model's performance'').
+
+3. Content and formatting preservation:  
+- Terminology: Preserve standard domain-specific abbreviations (for example, GRB, IC, ADAF) without expansion.  
+- Commands: Strictly retain all LaTeX commands (such as \cite\{\}, \ref\{\}, \eg, \ie).  
+- Formatting: Preserve all existing formatting (such as \textbf\{\}), and do not introduce any new emphasis.
+
+4. Structural requirement:  
+- Do not convert paragraphs into itemized lists. Maintain the original paragraph structure.
+
+5. Output format:  
+- Part 1 [LaTeX]: Output only the refined English LaTeX code.  
+  * Escape special characters (for example, \%, \_, \&amp;).  
+  * Preserve all mathematical expressions exactly as written (including \$ symbols).  
+- Part 2 [Translation]: Provide a direct Chinese translation.  
+  * Do not include English terms in parentheses after Chinese terms.  
+- Part 3 [Modification Log]: Briefly summarize the main refinements in Chinese (for example, improved sentence structure, enhanced academic tone, corrected grammar errors).  
+
+Do not output any additional content beyond these three parts.
+
+\textbf{Input}  
+[Paste your English LaTeX code snippet here]
+```。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/ai-research-writing.html</guid><pubDate>Mon, 13 Apr 2026 08:26:39 +0000</pubDate></item><item><title>AutoPhOT 安装指南（Mac Apple Silicon）</title><link>https://xiaosy-astro.github.io/post/AutoPhOT%20-an-zhuang-zhi-nan-%EF%BC%88Mac%20Apple%20Silicon%EF%BC%89.html</link><description>这份说明记录了在 Apple Silicon 设备上成功安装 AutoPhOT 的完整步骤，
+适用于需要全功能（Astrometry.net + HOTPANTS + PyZOGY）的场景。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/AutoPhOT%20-an-zhuang-zhi-nan-%EF%BC%88Mac%20Apple%20Silicon%EF%BC%89.html</guid><pubDate>Sat, 07 Feb 2026 13:38:37 +0000</pubDate></item><item><title>盘-冕几何辐射成分示意图</title><link>https://xiaosy-astro.github.io/post/pan---mian-ji-he-fu-she-cheng-fen-shi-yi-tu.html</link><description>&lt;img width='800' height='200' alt='Image' src='https://github.com/user-attachments/assets/1229cb7f-6cb8-412f-9ca7-d1ac8f3dd372' /&gt;
+
+Schematic illustration of (a) a black hole-disk-corona model including thermal, Compton, and reflection components, and (b) a black hole disk model with reflection component from self-irradiation of the disk (thermal returning) and iterative reflection (reflection returning). The color
+gradient in the disk indicates that the temperature increases towards the black hole.
+
+As shown in Fig. 1(a), the observed spectrum of black hole
+XRBs typically consists of three primary components: (i) a thermal component originating from a geometrically thin, optically thick accretion disk (Shakura &amp; Sunyaev 1973; Page &amp; Thorne 1974) ; (ii) a Comptonized component produced by a hot corona that inverse-Compton scatters soft disk photons (Thorne &amp; Price 1975; Shapiro et al. 1976) ; and (iii) a reflection component resulting from the illumination of the disk by the corona (George &amp; Fabian 1991). The disk is thought to be cold as it can efficiently emit radiation and its thermal spectrum peaks in the soft X-rays (∼ 1 keV). The coronal spectrum takes a power-law like form that can extend to above 100 keV.
+
+A particularly important effect in this context is returning radiation (or self-irradiation) (purple and brown arrows in
+Fig. 1(b)), i.e., disk emission that is bent back onto the accretion disk by the strong gravitational field of the black hole. The
+first calculations of this effect were performed by Cunningham (1976) in the context of thermal disk spectra, while Li et al.(2005) later showed that it can mimic the effect of a higher accretion rate.
+
+credit: [Modeling X-ray reflection spectra from returning radiation:application to 4U 1630–47](https://arxiv.org/pdf/2601.14860)。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/pan---mian-ji-he-fu-she-cheng-fen-shi-yi-tu.html</guid><pubDate>Fri, 23 Jan 2026 01:57:15 +0000</pubDate></item><item><title>macOS下载安装KerrC</title><link>https://xiaosy-astro.github.io/post/macOS-xia-zai-an-zhuang-KerrC.html</link><description>## 一、准备
+### 1. 下载KerrC
+```shell
+git clone https://gitlab.com/krawcz/kerrc-x-ray-fitting-code.git
+```
+
+### 2. 安装hdf5
+
+```shell
+brew install hdf5
+```
+### 3. 下载安装sherpa
+
+```shell
+conda create -n sherpa -c https://cxc.cfa.harvard.edu/conda/sherpa -c conda-forge sherpa
+conda activate sherpa
+conda install -c conda-forge matplotlib astropy
+```
+### 4. 下载和安装boost
+
+下载
+```shell
+wget https://archives.boost.io/release/1.90.0/source/boost_1_89_0.tar.bz2
+```
+安装
+```shell
+cd boost_1_89_0
+./bootstrap.sh --with-libraries=python
+./b2 -j4
+# 屏幕打印
+# The Boost C++ Libraries were successfully built!
+# The following directory should be added to compiler include paths:
+# /Users/btwang/workshop/code/polarized_radiation_transfer_code/kerrc-x-ray-fitting-code/boost_1_89_0
+# The following directory should be added to linker library paths:
+# /Users/btwang/workshop/code/polarized_radiation_transfer_code/kerrc-x-ray-fitting-code/boost_1_89_0/stage/lib
+```
+
+## 二、编译
+在进入kerrc-x-ray-fitting-code/raytracing/目录，临时把 Homebrew 放到前面（Apple Silicon 一般是 /opt/homebrew）：
+```shell
+export PATH='/opt/homebrew/bin:$PATH'
+which h5c++
+# 现在应该是 /opt/homebrew/bin/h5c++
+```
+```shell
+make
+# 最后打印的内容：5 warnings generated.
+# h5c++ -lm aliev.o glampedakis.o kerr.o metric.o pani.o wind.o N.o corona.o dataWriter.o xTrack.o -o xTrack
+```
+## 三、运行
+使用以下类型的语句运行代码： ./xTrack -d -D -K -n 2000 -r -10 -c 0000000 -f outdir 这些选项在代码 xTrack.cpp 中进行了解释。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/macOS-xia-zai-an-zhuang-KerrC.html</guid><pubDate>Wed, 21 Jan 2026 06:37:52 +0000</pubDate></item><item><title>FXTSoft 在 macOS (Apple Silicon) 上安装成功步骤总结</title><link>https://xiaosy-astro.github.io/post/FXTSoft%20-zai-%20macOS%20%28Apple%20Silicon%29%20-shang-an-zhuang-cheng-gong-bu-zou-zong-jie.html</link><description>环境背景
+
+	•	机器：Apple Silicon（M 系列）
+	•	系统：macOS
+	•	目标：安装 FXTSoft（x86_64）
+	•	已存在：HEASoft（arm64）
+	•	解决思路：Rosetta + Intel Homebrew + 环境切换
+&lt;html&gt;
+&lt;head&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;p class='p1'&gt;下面是一份**“FXTSoft 在 macOS（Apple Silicon）上成功安装”的精简复盘清单**，按&lt;span class='s1'&gt;&lt;b&gt;时间顺序 + 关键坑位&lt;/b&gt;&lt;/span&gt;整理，适合你以后快速查阅或给同组同学参考。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/FXTSoft%20-zai-%20macOS%20%28Apple%20Silicon%29%20-shang-an-zhuang-cheng-gong-bu-zou-zong-jie.html</guid><pubDate>Thu, 01 Jan 2026 13:21:58 +0000</pubDate></item><item><title>XRB不同谱态下吸积流的构型</title><link>https://xiaosy-astro.github.io/post/XRB-bu-tong-pu-tai-xia-xi-ji-liu-de-gou-xing.html</link><description>&lt;img width='450' height='478' alt='Image' src='https://github.com/user-attachments/assets/4bf60c09-7182-4ae5-899d-ea1c8beea9d0' /&gt;
+
+上图为能谱态下吸积流的构型，点代表ADAF盘，水平条代表薄吸积盘。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/XRB-bu-tong-pu-tai-xia-xi-ji-liu-de-gou-xing.html</guid><pubDate>Wed, 24 Dec 2025 08:35:51 +0000</pubDate></item><item><title>Disk-corona模型</title><link>https://xiaosy-astro.github.io/post/Disk-corona-mo-xing.html</link><description>
+
+&lt;img width='547' height='354' alt='Image' src='https://github.com/user-attachments/assets/32cfa191-ee27-4763-8d22-afef7fe9ef8c' /&gt;
+
+Disk-corona模型。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/Disk-corona-mo-xing.html</guid><pubDate>Mon, 17 Nov 2025 07:58:41 +0000</pubDate></item><item><title>macos免密 SSH 登录服务器</title><link>https://xiaosy-astro.github.io/post/macos-mian-mi-%20SSH%20-deng-lu-fu-wu-qi.html</link><description>在 macOS 上，免密 SSH 登录服务器 的标准方法是通过 SSH 公钥认证（public key authentication）.一次配置好之后，你就可以直接输入：
+```bash
+ssh username@server.address
+```
+#### 1. 在本地生成密钥
+
+在 macOS 终端输入：
+
+```bash
+ssh-keygen -t rsa -b 4096 -C 'btwang@server'
+```
+一路回车即可
+
+输出类似：
+```bash
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/yourname/.ssh/id_rsa):
+```
+生成的文件：
+	•	私钥：\~/.ssh/id_rsa（保密！）
+	•	公钥：\~/.ssh/id_rsa.pub
+
+#### 2. 上传公钥到服务器
+```bash
+ssh-copy-id username@server.address
+```
+
+
+#### 3. 免密登录
+```bash
+ssh username@server.address
+```
+
+
+#### 提交slurm作业
+
+```bash
+sbatch run_vegas.slurm
+squeue -u $USER
+```。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/macos-mian-mi-%20SSH%20-deng-lu-fu-wu-qi.html</guid><pubDate>Tue, 28 Oct 2025 11:21:59 +0000</pubDate></item><item><title>HMXB 4U 1700-377</title><link>https://xiaosy-astro.github.io/post/HMXB%204U%201700-377.html</link><description>
+
+&lt;img width='223' height='448' alt='Image' src='https://github.com/user-attachments/assets/934cd626-115a-4bcb-ab5c-fcb81b6e4b36' /&gt;
+
+Fig. 4. Summary of the fit results. From top to bottom, the modulation
+curves in phase D and F, the X-ray count rate, PD (2–8 keV), PD (2–4
+keV), PD (4–8 keV), column density, photon index, and normalization of
+the powerlaw. The hatch marks in the PD (2–8 keV) panel represent the
+MDP for each time interval. The three colors indicating variability are the
+same as in Figure 3. Alt Text: Summary plot of spectral fit results over
+time
+
+原文链接：[First Detection of X-ray Polarization and Its Short-term Increase Pre- and Post-Eclipse in HMXB 4U 1700-377](https://arxiv.org/pdf/2509.14494v1)。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/HMXB%204U%201700-377.html</guid><pubDate>Mon, 22 Sep 2025 02:07:26 +0000</pubDate></item><item><title>M74 X-1</title><link>https://xiaosy-astro.github.io/post/M74%20X-1.html</link><description>&lt;img width='704' height='314' alt='Image' src='https://github.com/user-attachments/assets/a9c3957c-b147-4ecd-a2b6-5176506e62f5' /&gt;
+
+&lt;img width='426' height='366' alt='Image' src='https://github.com/user-attachments/assets/ff7e4d68-ca8a-4f31-ad80-288821035f3f' /&gt;
+
+(a) 耀发态观测（观测号：2057、2058、0154350101）同时拟合所得到的光谱与残差，采用的模型为 tbabs*(po)、tbabs*(diskbb+po)、tbabs*(diskbb+gauss+po)，并联动 NH、Tin、Γ 和高斯参数。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/M74%20X-1.html</guid><pubDate>Wed, 17 Sep 2025 03:38:54 +0000</pubDate></item><item><title>ELISA使用教程</title><link>https://xiaosy-astro.github.io/post/ELISA-shi-yong-jiao-cheng.html</link><description>### 打印能量
+
+```python
+ECLAIRs_pluse1 = Data(
+    name=f'{event_name}_pluse1',
+    erange=[4.0, 20.0],
+    specfile=f'./{folder_name}/GRB250419A_PEO_1er_episode.grp',
+    respfile=f'./{folder_name}/GRB250419A_PEO_rmf_1er_episode.fits',
+    ancrfile=f'./{folder_name}/ECL-RSP-ARF_20220515T01.fits',
+    group='opt'
+)
+print(ECLAIRs_pluse1.channel_emean)
+```
+
+### 计算能量流量
+```
+import numpy as np
+Emax = round(max(ECLAIRs_pluse1.channel_emean))
+print(f'Emax={Emax}')
+Flux = posterior.flux(emin=4,emax=Emax,cl=1.,energy=True,hdi=False,comps=False)
+median_flux = Flux.median['GRB 250419A_pluse1'].value
+lower_flux, upper_flux = Flux.intervals['GRB 250419A_pluse1'][0].value, Flux.intervals['GRB 250419A_pluse1'][1].value
+exponent = np.floor(np.log10(abs(median_flux)))
+print(f'{median_flux/10**(exponent):.2f} \
+      (+{(upper_flux - median_flux)/10**(exponent):.2f}, \
+    {(lower_flux-median_flux)/10**(exponent):.2f}) e{exponent:.0f} erg/cm^2/s')
+```。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/ELISA-shi-yong-jiao-cheng.html</guid><pubDate>Tue, 16 Sep 2025 12:46:37 +0000</pubDate></item><item><title>eROSITA 探测到的新星的分布</title><link>https://xiaosy-astro.github.io/post/eROSITA%20-tan-ce-dao-de-xin-xing-de-fen-bu.html</link><description>&lt;img width='652' height='467' alt='Image' src='https://github.com/user-attachments/assets/d1bff3dc-b0b1-43c7-81e0-6d392c3a37a9' /&gt;
+
+图 2： 银河系内所有历史新星（灰色）与 eROSITA 探测到的新星（红色）的分布。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/eROSITA%20-tan-ce-dao-de-xin-xing-de-fen-bu.html</guid><pubDate>Mon, 15 Sep 2025 03:24:10 +0000</pubDate></item><item><title>The canonical behavior of the early X-ray light curve for GRBs</title><link>https://xiaosy-astro.github.io/post/The%20canonical%20behavior%20of%20the%20early%20X-ray%20light%20curve%20for%20GRBs.html</link><description>&lt;img width='714' height='564' alt='Image' src='https://github.com/user-attachments/assets/512befb0-790d-4937-9dce-3ceb46a50d86' /&gt;
+
+原文链接：[Evidence for a Canonical GRB Afterglow Light Curve in the Swift XRT Data](https://arxiv.org/pdf/astro-ph/0508332)。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/The%20canonical%20behavior%20of%20the%20early%20X-ray%20light%20curve%20for%20GRBs.html</guid><pubDate>Fri, 12 Sep 2025 01:29:49 +0000</pubDate></item><item><title>EP250911a的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250911a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>
+### 1. 光变曲线
+
+&lt;img width='660' height='478' alt='Image' src='https://github.com/user-attachments/assets/c110f3a5-b47a-46a0-a0a8-aa892c5dafd6' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='660' height='664' alt='Image' src='https://github.com/user-attachments/assets/349c6787-a257-4b28-94aa-fa34c81076c2' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='660' height='666' alt='Image' src='https://github.com/user-attachments/assets/e2a2f65a-ccab-4170-92c5-2cd0e9198ea8' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250911a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Fri, 12 Sep 2025 01:16:37 +0000</pubDate></item><item><title>GRB 221009A 散射的 prompt 辐射形成的晕</title><link>https://xiaosy-astro.github.io/post/GRB%20221009A%20-san-she-de-%20prompt%20-fu-she-xing-cheng-de-yun.html</link><description>
+&lt;img width='707' height='211' alt='Image' src='https://github.com/user-attachments/assets/27bedb6d-c010-4b3f-b767-734cebeea6e2' /&gt;
+
+图 1. 不同背景去除方法下，由 GRB 221009A 散射的 prompt 辐射形成的晕。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/GRB%20221009A%20-san-she-de-%20prompt%20-fu-she-xing-cheng-de-yun.html</guid><pubDate>Thu, 11 Sep 2025 01:36:57 +0000</pubDate></item><item><title>EP250910a/GRB 250910A 的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250910a-GRB%20250910A%20-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='630' height='586' alt='Image' src='https://github.com/user-attachments/assets/772aad95-014b-40d4-bc6b-fc78ee0285c4' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='630' height='604' alt='Image' src='https://github.com/user-attachments/assets/7658d0f3-0104-44ad-aeb1-f2d07b041c36' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='630' height='615' alt='Image' src='https://github.com/user-attachments/assets/0efc473b-45ad-443b-9f8f-49d1ddda0641' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250910a-GRB%20250910A%20-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Wed, 10 Sep 2025 08:16:19 +0000</pubDate></item><item><title>VegasAfterglow使用教程</title><link>https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</link><description>版本 ：V1.0.0 
+
+### 1. 查看模型有哪些物理参数
+
+```python
+import VegasAfterglow
+dir(VegasAfterglow.ModelParams)
+```
+
+输出结果
+
+```python
+['A_star',
+ 'E_iso',
+ 'E_iso_w',
+ 'Gamma0',
+ 'Gamma0_w',
+ 'L0',
+ '__class__',
+ '__delattr__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getstate__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '_pybind11_conduit_v1_',
+ 'eps_B',
+ 'eps_B_r',
+ 'eps_e',
+ 'eps_e_r',
+ 'k_e',
+ 'k_g',
+ 'n0',
+ 'n_ism',
+ 'p',
+ 'p_r',
+ 'q',
+ 't0',
+ 'tau',
+ 'theta_c',
+ 'theta_v',
+ 'theta_w',
+ 'xi_e',
+ 'xi_e_r']
+```
+
+### 2. 查看模型有哪些配置
+
+```python
+from VegasAfterglow import Setups
+cfg = Setups()
+dir(cfg)
+```
+
+输出结果
+
+```python
+['IC_cooling',
+ 'KN',
+ '__class__',
+ '__delattr__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getstate__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '_pybind11_conduit_v1_',
+ 'fwd_SSC',
+ 'jet',
+ 'lumi_dist',
+ 'magnetar',
+ 'medium',
+ 'phi_resol',
+ 'rtol',
+ 'rvs_SSC',
+ 'rvs_shock',
+ 't_resol',
+ 'theta_resol',
+ 'z']
+```
+
+### 3. 查询拟合器
+
+```python
+from VegasAfterglow import Fitter
+fitter = Fitter(data, cfg)
+help(fitter.fit)
+```
+
+输出结果
+
+```python
+Help on method fit in module VegasAfterglow.runner:
+
+fit(param_defs: Sequence[VegasAfterglow.types.ParamDef], resolution: Tuple[float, float, float] = (0.3, 1, 10), total_steps: int = 10000, burn_frac: float = 0.3, thin: int = 1, top_k: int = 10) -&gt; VegasAfterglow.types.FitResult method of VegasAfterglow.runner.Fitter instance
+    Run the MCMC sampler.
+
+    Parameters
+    ----------
+    param_bounds :
+        A sequence of (name, init, lower, upper) for each free parameter.
+    resolution :
+        (t_grid, theta_grid, phi_grid) for the coarse MCMC stage.
+    total_steps :
+        Total number of MCMC steps.
+    burn_frac :
+        Fraction of steps to discard as burn-in.
+    thin :
+        Thinning factor for the returned chain.
+    top_k :
+        Number of top fits to save in the result.
+
+    Returns
+    -------
+    FitResult
+```
+
+。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/VegasAfterglow-shi-yong-jiao-cheng.html</guid><pubDate>Tue, 09 Sep 2025 09:50:26 +0000</pubDate></item><item><title>EP250908c的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250908c-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='600' height='482' alt='Image' src='https://github.com/user-attachments/assets/d92b0cd8-cd27-46a5-8417-4732547c4546' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='600' height='577' alt='Image' src='https://github.com/user-attachments/assets/03d80e84-978d-43fc-8eac-7e11e7c81ee1' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='600' height='582' alt='Image' src='https://github.com/user-attachments/assets/2915fa8a-2525-4aa2-85ff-e78866f42e15' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250908c-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Tue, 09 Sep 2025 06:31:46 +0000</pubDate></item><item><title>EP250908d的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250908d-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='600' height='481' alt='Image' src='https://github.com/user-attachments/assets/d4f0c533-ab36-427f-8a94-f4e8829ccfd1' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='600' height='575' alt='Image' src='https://github.com/user-attachments/assets/e74eb5b1-4466-4565-9de5-22461c07875b' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='600' height='582' alt='Image' src='https://github.com/user-attachments/assets/9c80f3e4-bac2-45ea-8894-74b2368a07eb' /&gt;
+
+最后确认是LSPM J2248+2723恒星耀发。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250908d-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Tue, 09 Sep 2025 06:25:42 +0000</pubDate></item><item><title>EP250908b的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250908b-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='600' height='478' alt='Image' src='https://github.com/user-attachments/assets/f9997ad8-e5ee-40ed-8681-1c54594b201a' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='600' height='576' alt='Image' src='https://github.com/user-attachments/assets/3f6eab3a-e7ca-4907-a015-69077de8f268' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='600' height='582' alt='Image' src='https://github.com/user-attachments/assets/1e584a9a-69aa-479a-a6d5-4fd4eab2b1d5' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250908b-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Tue, 09 Sep 2025 02:13:58 +0000</pubDate></item><item><title>Testing Magnetic Field Configurations in Spider Pulsar PSR J1723−2837 with IXPE</title><link>https://xiaosy-astro.github.io/post/Testing%20Magnetic%20Field%20Configurations%20in%20Spider%20Pulsar%20PSR%20J1723%E2%88%922837%20with%20IXPE.html</link><description>
+&lt;img width='698' height='422' alt='Image' src='https://github.com/user-attachments/assets/af74baca-5c11-4a77-b7e0-a1e433a85d06' /&gt;
+
+图2. 左图：PSR J1723−2837 的去背景X射线光变曲线，分别由 XMM-Newton、Chandra、NuSTAR 和 IXPE（自上而下）获得，并按照 F. Crawford 等（2013）的双星轨道星历折叠。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/Testing%20Magnetic%20Field%20Configurations%20in%20Spider%20Pulsar%20PSR%20J1723%E2%88%922837%20with%20IXPE.html</guid><pubDate>Tue, 09 Sep 2025 01:50:19 +0000</pubDate></item><item><title>EP250907a的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250907a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='605' height='481' alt='Image' src='https://github.com/user-attachments/assets/c3fdc2d1-a44e-4c89-bd3f-504eef590ac8' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='605' height='577' alt='Image' src='https://github.com/user-attachments/assets/4c6d53cc-fbb2-4d4a-a058-8734dff9c2eb' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='605' height='582' alt='Image' src='https://github.com/user-attachments/assets/fd82f486-76ac-45f0-82c8-2f70f9f6ae23' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250907a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Mon, 08 Sep 2025 03:31:31 +0000</pubDate></item><item><title>EP250905a的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250905a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='672' height='473' alt='Image' src='https://github.com/user-attachments/assets/84be33da-eeba-4e7f-bdc0-622882498195' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='597' height='577' alt='Image' src='https://github.com/user-attachments/assets/87643151-d131-4d9e-aaa8-4d738151e628' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='590' height='582' alt='Image' src='https://github.com/user-attachments/assets/32cb0cb2-e5de-473b-9f95-ab06e88cf59a' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250905a-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Sat, 06 Sep 2025 13:17:29 +0000</pubDate></item><item><title>EP250905b的光变曲线和能谱拟合</title><link>https://xiaosy-astro.github.io/post/EP250905b-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</link><description>### 1. 光变曲线
+
+&lt;img width='675' height='479' alt='Image' src='https://github.com/user-attachments/assets/58f9fc17-d5f9-4e17-bb8b-1d65e27beac0' /&gt;
+
+### 2. 能谱拟合结果
+
+&lt;img width='604' height='578' alt='Image' src='https://github.com/user-attachments/assets/6db375a2-7f84-4c41-ae93-a9db3a384acb' /&gt;
+
+### 3. 能谱拟合最优参数Conor图
+
+&lt;img width='592' height='581' alt='Image' src='https://github.com/user-attachments/assets/aaf1f036-ab4c-4123-afda-b958df0526fa' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP250905b-de-guang-bian-qu-xian-he-neng-pu-ni-he.html</guid><pubDate>Sat, 06 Sep 2025 12:05:46 +0000</pubDate></item><item><title>GRB 250314A的光学光谱</title><link>https://xiaosy-astro.github.io/post/GRB%20250314A-de-guang-xue-guang-pu.html</link><description>&lt;img width='649' height='279' alt='Image' src='https://github.com/user-attachments/assets/1658a2e1-a225-4fb4-9ee5-759539df6ae8' /&gt;
+
+
+图 2：左图：二维的可见光 (VIS, 上) 和近红外 (NIR, 下) VLT/X-shooter 光谱。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/GRB%20250314A-de-guang-xue-guang-pu.html</guid><pubDate>Fri, 05 Sep 2025 13:14:50 +0000</pubDate></item><item><title>黑体辐射</title><link>https://xiaosy-astro.github.io/post/hei-ti-fu-she.html</link><description>
+&lt;img width='403' height='182' alt='Image' src='https://github.com/user-attachments/assets/a5758672-e332-4742-8529-510e64e0e656' /&gt;
+
+&lt;img width='489' height='485' alt='Image' src='https://github.com/user-attachments/assets/b68ca69a-95b1-4102-8304-e80cc345ce93' /&gt;
+
+为了研究热辐射，首先必须考虑黑体辐射——即处于热平衡状态下的辐射。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/hei-ti-fu-she.html</guid><pubDate>Thu, 04 Sep 2025 03:03:20 +0000</pubDate></item><item><title>来自均匀亮球的流量</title><link>https://xiaosy-astro.github.io/post/lai-zi-jun-yun-liang-qiu-de-liu-liang.html</link><description>
+&lt;img alt='Image' src='https://github.com/user-attachments/assets/466adf60-edf4-4254-9d1c-df879538ffad' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/lai-zi-jun-yun-liang-qiu-de-liu-liang.html</guid><pubDate>Wed, 03 Sep 2025 06:18:53 +0000</pubDate></item><item><title>立体角和面元的命名</title><link>https://xiaosy-astro.github.io/post/li-ti-jiao-he-mian-yuan-de-ming-ming.html</link><description>
+
+&lt;img width='692' height='300' alt='Image' src='https://github.com/user-attachments/assets/3bbef14f-a2f2-4b49-8feb-c6f60a4fe33f' /&gt;
+
+
+
+a) 在观察者看来，光源表现为点源；
+b) 探测器接收到的光线来自吸积盘的不同部分（比前一幅图中看到的盘更近）；
+c) 当光线经过黑洞附近传播时，光管的截面积会发生变化（此时吸积盘处于边缘朝向）。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/li-ti-jiao-he-mian-yuan-de-ming-ming.html</guid><pubDate>Fri, 29 Aug 2025 13:21:25 +0000</pubDate></item><item><title>Mac安装MONK教程</title><link>https://xiaosy-astro.github.io/post/Mac-an-zhuang-MONK-jiao-cheng.html</link><description>
+### 0. 下载monk程序文件
+```shell
+git clone https://projects.asu.cas.cz/zhang/monk.git
+```
+安装以下软件：
+```shell
+brew install gcc
+brew install open-mpi
+```
+
+
+
+### 1. 在 ./sim5 下构建 `sim5` 库
+
+首先进入到`sim5`目录下，使用vim打开`Makefile`文件，做如下修改
+```shell
+CC=gcc改为CC=gcc-15
+```
+然后构建：
+```shell
+cd sim5
+make
+```
+
+### 2 修改 electron_population.h 的第 17 行。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/Mac-an-zhuang-MONK-jiao-cheng.html</guid><pubDate>Thu, 28 Aug 2025 11:48:35 +0000</pubDate></item><item><title>GR下盘-冕系统的X射线偏振结果</title><link>https://xiaosy-astro.github.io/post/GR-xia-pan---mian-xi-tong-de-X-she-xian-pian-zhen-jie-guo.html</link><description>
+&lt;img width='550' height='347' alt='Image' src='https://github.com/user-attachments/assets/8cc6c29a-18df-4051-a8d6-697e1ba27d24' /&gt;
+
+
+在图 2 中，我们展示了盘-冕系统（其中包含一个球对称冕区）的结果，针对不同倾角处观测者的情况。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/GR-xia-pan---mian-xi-tong-de-X-she-xian-pian-zhen-jie-guo.html</guid><pubDate>Thu, 28 Aug 2025 11:05:23 +0000</pubDate></item><item><title>来自黑洞附近的偏振辐射的可观测引力效应</title><link>https://xiaosy-astro.github.io/post/lai-zi-hei-dong-fu-jin-de-pian-zhen-fu-she-de-ke-guan-ce-yin-li-xiao-ying.html</link><description>&lt;img width='313' height='437' alt='Image' src='https://github.com/user-attachments/assets/2ff69822-3260-4557-8bf8-af5557cf96a2' /&gt;
+
+
+&lt;img width='313' height='437' alt='Image' src='https://github.com/user-attachments/assets/aa8b66e8-ce1c-46e9-94f3-781cbc287350' /&gt;
+
+
+来自绕黑洞旋转的吸积盘的X射线线偏振辐射受到广义相对论效应的影响。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/lai-zi-hei-dong-fu-jin-de-pian-zhen-fu-she-de-ke-guan-ce-yin-li-xiao-ying.html</guid><pubDate>Wed, 27 Aug 2025 11:24:12 +0000</pubDate></item><item><title>反射模型：a）灯柱模型； b）弥漫的冕模型。</title><link>https://xiaosy-astro.github.io/post/fan-she-mo-xing-%EF%BC%9Aa%EF%BC%89-deng-zhu-mo-xing-%EF%BC%9B%20b%EF%BC%89-mi-man-de-mian-mo-xing-%E3%80%82.html</link><description>
+
+&lt;img alt='Image' src='https://github.com/user-attachments/assets/f237b8ec-31bd-4b54-89b8-099ae158717d' /&gt;
+
+几乎总是存在的特征光谱特征之一是幂律成分。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/fan-she-mo-xing-%EF%BC%9Aa%EF%BC%89-deng-zhu-mo-xing-%EF%BC%9B%20b%EF%BC%89-mi-man-de-mian-mo-xing-%E3%80%82.html</guid><pubDate>Wed, 27 Aug 2025 07:52:22 +0000</pubDate></item><item><title>IXPE观测到的黑洞X射线双星</title><link>https://xiaosy-astro.github.io/post/IXPE-guan-ce-dao-de-hei-dong-X-she-xian-shuang-xing.html</link><description>### IXPE在其任务的前2.5年中观测到的所有黑洞X射线双星
+
+&lt;img width='482' height='244' alt='Image' src='https://github.com/user-attachments/assets/c5edc004-49e3-4fa9-802e-12a7d58ccb49' /&gt;
+
+原文链接 [IXPE View of BH XRBs during the First 2.5 Years of the Mission](https://www.mdpi.com/2075-4434/12/5/54)
+
+### Python将该图复现
+
+```python
+import numpy as np
+from astropy.coordinates import SkyCoord
+import astropy.units as u
+from dustmaps.sfd import SFDQuery
+import matplotlib.pyplot as plt
+plt.style.use('https://raw.githubusercontent.com/wangboting/python-style/main/pythonstyle.style')
+plt.rcParams['axes.unicode_minus'] = False
+plt.rcParams['font.size'] = 12
+plt.rcParams['font.family'] = 'Times New Roman'
+
+from dustmaps.sfd import SFDQuery
+
+
+
+# 初始化 SFD
+sfd = SFDQuery()
+
+# 在银道坐标系中采样
+l = np.linspace(-180, 180, 1000)
+b = np.linspace(-90, 90, 500)
+ll, bb = np.meshgrid(l, b)
+coords = SkyCoord(l=-ll*u.deg, b=bb*u.deg, frame='galactic')
+ebv = sfd(coords)   # 得到 E(B−V) 值
+
+# 画 Mollweide 投影
+plt.figure(figsize=(10,5))
+ax = plt.subplot(111, projection='mollweide')
+im = ax.pcolormesh(np.radians((ll)), np.radians(bb), ebv,
+                   shading='auto', cmap='Blues', vmin=0, vmax=2,alpha=0.9)
+
+plt.colorbar(im, orientation='vertical', pad=0.05, label='E(B-V)',location='right',extend='max')
+ax.tick_params(axis='both', colors='red')
+xtick_locs = np.radians([-150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150])  # Radians for plotting
+xtick_labels = ['150°', '120°', '90°', '60°', '30°', '0°', '330°', '300°', '270°', '240°', '210°']
+ax.set_xticks(xtick_locs)
+ax.set_xticklabels(xtick_labels)
+ax.set_xlabel('l [deg]')
+ax.set_ylabel('b [deg]')
+ax.grid(True)
+def wrap_l(l):
+    return 360-l if l &gt; 180 else -l
+# 定义源的信息：名字、l、b、颜色
+sources = [
+    ('Cyg X-1',        71.3349982655144,  +3.0668346317201, 'orange'),
+    ('Cyg X-3',        79.84549,          +0.70006,         'blue'),
+    ('LMC X-1',       280.2030024388124, -31.5158204428701, 'green'),
+    ('LMC X-3',       273.5764427008667, -32.0814329516362, 'red'),
+    ('4U 1957+115',    51.3076815317130,  -9.3301753261750, 'purple'),
+    ('SS 433',         39.6941044854067,  -2.2445979222389, 'yellow'),
+    ('Swift J1727.8-1613',  8.64165916,  +10.2553516,       'pink'),
+    ('GX 339-4',      338.9391581007216,  -4.3264729352953, 'brown'),
+    ('4U 1630-47',    336.911278,         +0.250229,        'skyblue'),
+    ('Swift J151857.0–572147', 321.815571, -0.00253675,     'cyan'),
+]
+
+# 统一绘制
+for name, l, b, color in sources:
+    ax.scatter(
+        np.radians(wrap_l(l)), np.radians(b),
+        color=color, marker='*', s=150,
+        edgecolors='black', linewidths=0.8,
+        label=name
+    )
+
+# 图例
+ax.legend(
+    loc='upper center',
+    bbox_to_anchor=(0.5, -0.1),  # 横向居中，纵向往下挪
+    fontsize='small',
+    ncol=4,
+    frameon=False
+)
+plt.savefig('All_BH_XRBs_observed_by_IXPE.pdf',dpi=400,bbox_inches='tight')
+plt.show()
+```
+
+### 结果
+
+&lt;img width='723' height='427' alt='Image' src='https://github.com/user-attachments/assets/c913c5ed-1b24-499a-ad5c-40770c8a9161' /&gt;
+
+### 最新结果
+
+&lt;img width='723' height='430' alt='Image' src='https://github.com/user-attachments/assets/393a5a54-96b0-4f4a-8b00-de04bc1214c4' /&gt;。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/IXPE-guan-ce-dao-de-hei-dong-X-she-xian-shuang-xing.html</guid><pubDate>Tue, 26 Aug 2025 03:26:37 +0000</pubDate></item><item><title>FXT的流量转流量密度</title><link>https://xiaosy-astro.github.io/post/FXT-de-liu-liang-zhuan-liu-liang-mi-du.html</link><description>### 定义流量转流量密度的计算的函数
+
+```python
+import os
+import numpy as np
+import pandas as pd
+from astropy.io import fits
+from astropy.time import Time
+import pprint
+def compute_integral_energy(beta, E1, E2):
+    if beta == 1:
+        return np.log(E2 / E1)
+    else:
+        return (E2**(1 - beta) - E1**(1 - beta)) / (1 - beta)
+
+def compute_energy_flux_density_and_error(F, sigma_F, beta, sigma_beta, E1, E2, E_obs):
+    integral = compute_integral_energy(beta, E1, E2)
+    e_term = E_obs ** (-beta)
+    f_E = F / integral * e_term
+    df_dF = e_term / integral
+    df_dbeta = -np.log(E_obs) * F / integral * e_term
+    sigma_f_E = np.sqrt((df_dF * sigma_F)**2 + (df_dbeta * sigma_beta)**2)
+    return f_E, sigma_f_E  # 单位：erg/cm²/s/keV
+
+def compute_xray_energy_flux_density(
+    input_fits,
+    output_file, t0_iso,
+    beta_X=1.9,
+    sigma_beta_X=0.2,
+    E1=0.3,  # keV
+    E2=10.0,  # keV
+    E_obs=1.0,  # keV
+    rate_to_flux=1e-11
+):
+    '''  
+        从 Swift-XRT 光变 FITS 计算 X-ray flux density（单位 mJy）及误差，并保存到文件。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/FXT-de-liu-liang-zhuan-liu-liang-mi-du.html</guid><pubDate>Sun, 17 Aug 2025 12:11:02 +0000</pubDate></item><item><title>precursor 和 main burst示意图</title><link>https://xiaosy-astro.github.io/post/precursor%20-he-%20main%20burst-shi-yi-tu.html</link><description>代码：
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+plt.style.use('https://github.com/xiaosy-astro/python-style/blob/main/pythonstyle.style')
+plt.rcParams['font.sans-serif'] = ['SimSun']
+plt.rcParams['axes.unicode_minus'] = False
+plt.rcParams['font.size'] = 12
+plt.rcParams['font.family'] = 'Times New Roman'
+
+# 时间轴
+t = np.linspace(-50, 100, 500)
+
+# 背景噪声
+np.random.seed(42)
+background = np.random.normal(0, 0.1, len(t))
+
+# 模拟前驱辐射 (precursor)
+prec_peak_time = 0
+prec_width = 3
+prec_amplitude = 1.2
+prec_signal = prec_amplitude * np.exp(-(t - prec_peak_time)**2 / (2 * prec_width**2))
+
+# 模拟主暴发 (main burst)
+main_peak_time = 80
+main_width = 6
+main_amplitude = 3.5
+main_signal = main_amplitude * np.exp(-(t - main_peak_time)**2 / (2 * main_width**2))
+
+# 总光变曲线
+counts = background + prec_signal + main_signal
+
+# 关键参数（用于标注）
+R_prec = prec_amplitude
+R_main = main_amplitude
+tau_prec = 2 * prec_width
+tau_main = 2 * main_width
+
+t_start_prec = prec_peak_time - prec_width
+t_end_prec   = prec_peak_time + prec_width
+t_start_main = main_peak_time - main_width
+t_end_main   = main_peak_time + main_width
+
+dt_pk  = main_peak_time - prec_peak_time
+dt_det = t_start_main - t_end_prec
+
+# 画图（阶梯状）
+plt.figure(figsize=(7, 5))
+plt.step(t, counts, color='black', lw=1, where='mid')
+
+# 新的竖线位置
+vline_prec_start = t_start_prec - 4
+vline_prec_end   = t_end_prec + 4
+vline_main_start = t_start_main - 9
+vline_main_end   = t_end_main + 5
+
+# 竖虚线：前驱 / 主峰的 start/end
+# 竖虚线
+for x in (vline_prec_start, vline_prec_end, vline_main_start, vline_main_end):
+    plt.axvline(x, ls='--', color='gray', lw=0.9)
+
+
+for x in (prec_peak_time, main_peak_time):
+    plt.axvline(x, ls='--', color='blue', lw=0.3)
+# 水平虚线：R_prec / R_main
+plt.hlines(R_prec+0.2, t.min(), prec_peak_time, colors='red', linestyles='--', lw=0.9)
+plt.hlines(R_main+0.15, main_peak_time, t.max(), colors='red', linestyles='--', lw=0.9)
+
+# ylim 便于放置标注（与原图类似的上下边距）
+ymin = -1.0
+ymax = R_main + 1.0
+plt.ylim(ymin, ymax)
+
+# --- τ 标注：用弧形双箭头放在曲线下方 ---
+y_tau = ymin + 0.25  # 放在下方（与图中弧形类似）
+# precursor duration arc
+plt.annotate(
+    '', xy=(vline_prec_start, y_tau), xytext=(vline_prec_end, y_tau),
+    arrowprops=dict(arrowstyle='&lt;-&gt;', lw=1.2, connectionstyle='arc3,rad=-0.3')
+)
+plt.text((vline_prec_start + vline_prec_end)/2, y_tau+0.1, r'$\tau_{\rm prec}$', ha='center', va='top')
+
+plt.annotate(
+    '', xy=(vline_main_start, y_tau), xytext=(vline_main_end, y_tau),
+    arrowprops=dict(arrowstyle='&lt;-&gt;', lw=1.2, connectionstyle='arc3,rad=-0.3')
+)
+plt.text((vline_main_start + vline_main_end)/2, y_tau+0.1, r'$\tau_{\rm main}$', ha='center', va='top')
+
+# --- Δt_pk 标注：峰与峰之间的双箭头（放在上方） ---
+y_pk = R_main + 0.35
+plt.annotate(
+    '', xy=(prec_peak_time, y_pk), xytext=(main_peak_time, y_pk),
+    arrowprops=dict(arrowstyle='&lt;-&gt;', lw=1.2,color='blue')
+)
+plt.text((prec_peak_time + main_peak_time)/2, y_pk + 0.04, r'$\Delta t_{\rm pk}$', ha='center', va='bottom',color='blue')
+
+# --- Δt_det 标注：前驱结束与主峰开始之间的双箭头（放在 Δt_pk 之下） ---
+y_det = R_main + 0.15
+plt.annotate(
+    '', xy=(vline_prec_end, y_det), xytext=(vline_main_start, y_det),
+    arrowprops=dict(arrowstyle='&lt;-&gt;', lw=1.2)
+)
+plt.text((vline_prec_end + vline_main_start)/2, y_det - 0.3, r'$\Delta t_{\rm q}$', ha='center', va='bottom')
+# 标注 R_prec / R_main 的文字
+plt.text(t.min() + 2, R_prec + 0.2, r'$R_{\rm prec}$', va='bottom', color='red')
+plt.text(t.max() + 1, R_main + 0.2, r'$R_{\rm main}$', va='bottom', ha='right', color='red')
+
+# 轴与外观
+plt.xlabel(r'Time (s) $\rightarrow$')
+plt.ylabel(r'Counts s$^{-1}$ $\rightarrow$')
+plt.yticks([])
+plt.xticks([])
+plt.tight_layout()
+plt.savefig('lightcurve_prec_main_demo.pdf', dpi=400, bbox_inches='tight') 
+plt.show()
+```
+
+![Image](https://github.com/user-attachments/assets/9591562b-2537-4dfb-96bf-45a38dea2d55)
+
+- $R_{\mathrm{prec}}$: peak count rate of the first episode of emission  
+- $R_{\mathrm{main}}$: peak count rate of the main episode of emission  
+- $\tau_{\mathrm{prec}}$: duration of the precursor episode emission  
+- $\tau_{\mathrm{main}}$: duration of the main episode emission  
+- $\Delta t_{\mathrm{pk}}$: the separation time between the $R_{\mathrm{prec}}$ and $R_{\mathrm{main}}$  
+- $\Delta t_q$: the quiescent time  
+。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/precursor%20-he-%20main%20burst-shi-yi-tu.html</guid><pubDate>Tue, 12 Aug 2025 13:04:47 +0000</pubDate></item><item><title>如何在六个月内学会任何一门外语</title><link>https://xiaosy-astro.github.io/post/ru-he-zai-liu-ge-yue-nei-xue-hui-ren-he-yi-men-wai-yu.html</link><description>&gt; [!NOTE]
+&gt; 学会一门外语，对大多数人来说都需要花费好几年的时间。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/ru-he-zai-liu-ge-yue-nei-xue-hui-ren-he-yi-men-wai-yu.html</guid><pubDate>Fri, 08 Aug 2025 13:55:28 +0000</pubDate></item><item><title>EP/FXT 提取光变和能谱数据产品</title><link>https://xiaosy-astro.github.io/post/EP-FXT%20-ti-qu-guang-bian-he-neng-pu-shu-ju-chan-pin.html</link><description>&gt; [!IMPORTANT]
+&gt; 本教程是在给定坐标下， 从EP/FXT的用户数据中，提取其能谱和光变曲线产品，并自动生成两个能谱拟合xcm文件，一个是联合拟合，一个是单个拟合，只需要输入拟合的模型即可。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP-FXT%20-ti-qu-guang-bian-he-neng-pu-shu-ju-chan-pin.html</guid><pubDate>Fri, 08 Aug 2025 09:27:28 +0000</pubDate></item><item><title>EP_WXT_data_analysis</title><link>https://xiaosy-astro.github.io/post/EP_WXT_data_analysis.html</link><description>目标：流水线产品不可用，我需要重新提取数据，每一次观测数据含有event文件，需要通过xselect软件从event中提取数据产品，数据产品包括能谱（包括源和背景能谱）和光变曲线（源和背景的光变曲线）。</description><guid isPermaLink="true">https://xiaosy-astro.github.io/post/EP_WXT_data_analysis.html</guid><pubDate>Fri, 08 Aug 2025 02:16:22 +0000</pubDate></item></channel></rss>
